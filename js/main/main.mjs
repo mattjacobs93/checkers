@@ -4,6 +4,7 @@
 import * as viewImport from "../view/view.mjs";
 import * as PlayerImport from "../model/player.mjs"
 import * as ModelImport from '../model/model.mjs'
+import * as validatorImport from "../controller/validator.mjs"
 
 /*-------------------------------- Constants --------------------------------*/
 

@@ -37,7 +37,7 @@ function createBoardDisplay(boardDiv,boardGame) {
   function makeTile (row, col, idx) {
 
     function setTileBackground (tile) {
-      console.log(tile.classList)
+      //console.log(tile.classList)
       if (tile.classList.contains('light')) tile.style.backgroundColor = lightColorTile
       else tile.style.backgroundColor = darkColorTile
       
@@ -70,14 +70,5 @@ function createBoardDisplay(boardDiv,boardGame) {
 }
 
 
-function addPiecesToBoardAtStart () {
-  let initialBoard
-
-}
-
-
-function render(board) {
-  
-}
 
 
