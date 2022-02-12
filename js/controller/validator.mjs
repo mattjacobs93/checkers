@@ -6,7 +6,7 @@ let board =  [
   [-1,0,-1,0,-1,0,-1,0],
   [0,-1,0,-1,0,-1,0,-1],
   [0,0,0,0,0,0,0,0],
-  [0,1,0,1,0,0,0,0],
+  [0,0,0,-1,0,0,0,0],
   [1,0,1,0,1,0,1,0],
   [0,1,0,1,0,1,0,1],
   [1,0,1,0,1,0,1,0],
@@ -34,18 +34,25 @@ class Move {
 }
 
 
-
+class ValidMoves {
+  constructor () {
+    this.validMovesArray = []
+  }
+}
 
 
 
 function getValidMovesPlayer1Checker (location, board) {
-  let validMoves = []
-  let topLeft = [location[0]-1,location[1]-1]
-  let topRight = [location[0] -1,location[1] + 1]
-  let skipRight = [location[0] - 2, location[1] + 2]
-  let skipLeft = [location[0] - 2, location[1] - 2]
+  let validMovesObj = new ValidMoves()
+  // let topLeft = [location[0]-1,location[1]-1]
+  // let topRight = [location[0] -1,location[1] + 1]
+  // let bottomLeft = [location[0]-1,location[1]-1]
+  // let bottomRight = [location[0] -1,location[1] + 1]
+  //let skipRight = [location[0] - 2, location[1] + 2]
+  //let skipLeft = [location[0] - 2, location[1] - 2]
 
- function checkImmediatelyAdjacent (startingLocation, possibleAdjacent, board) {
+
+ function checkImmediatelyAdjacent (startingLocation, possibleAdjacent, board, validMovesObj) {
 
   
   try {
@@ -54,7 +61,10 @@ function getValidMovesPlayer1Checker (location, board) {
       newBoard[possibleAdjacent[0]][possibleAdjacent[1]] = 1
       newBoard[startingLocation[0]][startingLocation[1]] = 0
       let movesArray = [startingLocation, possibleAdjacent]
-      validMoves.push(new Move(movesArray, newBoard))
+      let newMove = new Move(movesArray, newBoard)
+      newMove.movesArray = newMove.movesArray[0]
+      validMovesObj.validMovesArray.push(newMove)
+
     }
    } catch {
 
@@ -62,27 +72,39 @@ function getValidMovesPlayer1Checker (location, board) {
 
  }
 
+ let pieceValue = board[location[0]][location[1]]
+
+  for (let i = -1; i < 2; i += 2) {
+    for (let j = -1; j < 2; j += 2) {
+
+      if (Math.abs(pieceValue) > 1 || (pieceValue === 1 && i === -1) || (pieceValue === -1 && i === 1)) {
+        let possibleAdjacent = [location[0] + i, location[1] + j]
+        checkImmediatelyAdjacent(location, possibleAdjacent, board, validMovesObj)
+      }
+
+    }
+  }
 
 
- checkImmediatelyAdjacent(location, topLeft, board)
- checkImmediatelyAdjacent(location, topRight, board)
+ //checkImmediatelyAdjacent(location, topLeft, board)
+ //checkImmediatelyAdjacent(location, topRight, board)
 
- function skip(location, board, validMoves, numMoves, moveObj) {
+ function skip(location, board, validMovesObj, numMoves, moveObj) {
    //if numMoves = 0, don't add self to validMoves,
   //increment numMoves by 1 after each iteration
   //basically just don't add the starting position
 
   if (numMoves > 0) {
     moveObj.movesArray.push(location)
-    validMoves.push(moveObj) 
+    validMovesObj.validMovesArray.push(moveObj) 
   }
 
-  peiceValue = board[location[0]][location[1]] 
+  let pieceValue = board[location[0]][location[1]] 
 
-  for (let i = -2; i <= 2; i = i + 4) {
-    for (let j = -2; j <= 2; j = j + 4) {
-      if (peiceValue === 1 && i === 2) continue
-      if (peiceValue === -1 && i === -2) continue
+  for (let i = -2; i <= 2; i += 4) {
+    for (let j = -2; j <= 2; j += 4) {
+      if (pieceValue === 1 && i === 2) continue
+      if (pieceValue === -1 && i === -2) continue
      // if (numMoves > 0) 
       
       try {
@@ -91,15 +113,15 @@ function getValidMovesPlayer1Checker (location, board) {
             let skipLocation = [location[0] + i, location[1] + j]
             let skipLocationIsEmpty = (board[skipLocation[0]][skipLocation[1]] === 0) ? true : false
            // let skipValue = board[skipLocation[0]][skipLocation[1]]
-            let adjacentIsOpponent = ((peiceValue > 0 && adjacentValue < 0) || (peiceValue < 0 && adjacentValue > 0)) ? true : false
+            let adjacentIsOpponent = ((pieceValue > 0 && adjacentValue < 0) || (pieceValue < 0 && adjacentValue > 0)) ? true : false
 
             if (skipLocationIsEmpty && adjacentIsOpponent) {
               let boardCopy = [...board]
               boardCopy[location[0]][location[1]] = 0
-              boardCopy[skipLocation[0]][skipLocation[1]] = peiceValue
+              boardCopy[skipLocation[0]][skipLocation[1]] = pieceValue
               boardCopy[adjacentLocation[0]][adjacentLocation[1]] = 0
               let moveObjCopy = moveObj.copy()
-              skip(skipLocation,boardCopy,validMoves,numMoves+1,moveObjCopy)
+              skip(skipLocation,boardCopy,validMovesObj,numMoves+1,moveObjCopy)
             }
 
         }
@@ -115,10 +137,10 @@ function getValidMovesPlayer1Checker (location, board) {
  }
  
  
- skip(location,board,validMoves,0,new Move(location,board))
+ skip(location,board,validMovesObj,0,new Move(location,board))
  
  //console.log(validMoves)
- return validMoves
+ return validMovesObj
 }
 
 
@@ -131,5 +153,6 @@ function getValidMoves(location, board) {
 } 
 
 
-getValidMoves([5,2],board)
+let validMovesArray = getValidMoves([5,2],board)
+console.log(validMovesArray)
 
