@@ -1,3 +1,8 @@
+
+body {
+  text-align: center;
+}
+
 #board {
   display: grid; 
   grid-template-columns: repeat(8, 1fr);
@@ -17,3 +22,8 @@
   height: 75vh;
   width: 75vh;
 }
+
+div div:hover {
+  border: 3px solid red;
+}
+

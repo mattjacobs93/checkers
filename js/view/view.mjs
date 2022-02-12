@@ -31,7 +31,7 @@ function boardClicked (evt) {
   console.log(evt.target.id)
 }
 
-function createBoardDisplay(board) {
+function createBoardDisplay(boardDiv,boardGame) {
 
 
   function makeTile (row, col, idx) {
@@ -45,11 +45,11 @@ function createBoardDisplay(board) {
 
     let tile = document.createElement('div')
 
-    
+    //console.log(board)
     tile.classList.add((((idx%2)+(row%2))%2 === 1) ? 'dark' : 'light')
     tile.id = idx.toString()
-    tile.textContent = (board[row][col] === 0 ) ? ' '
-      : (board[row][col] === 1) ? lightPiece
+    tile.textContent = (boardGame[row][col] === 0 ) ? ' '
+      : (boardGame[row][col] === 1) ? lightPiece
       : darkPiece
     setTileBackground(tile, idx)
     return tile
@@ -62,7 +62,7 @@ function createBoardDisplay(board) {
     for (let col = 0; col < NUM_COLS; col++) {
       let idx = (row * NUM_COLS) + col
       let tile = makeTile(row,col,idx)
-      board.appendChild(tile)
+      boardDiv.appendChild(tile)
     }
 
   }
@@ -77,7 +77,7 @@ function addPiecesToBoardAtStart () {
 
 
 function render(board) {
-
+  
 }
 
 

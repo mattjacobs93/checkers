@@ -7,7 +7,7 @@ import * as ModelImport from '../model/model.mjs'
 
 /*-------------------------------- Constants --------------------------------*/
 
-const Model = new ModelImport.Model(ModelImport.board)
+const model = new ModelImport.Model()
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -22,7 +22,7 @@ const Model = new ModelImport.Model(ModelImport.board)
 
 
 function initGame() {
-  viewImport.createBoardDisplay(viewImport.boardDisplay)
+  viewImport.createBoardDisplay(viewImport.boardDisplay,model.getGameBoard())
 }
 
 function main() {
