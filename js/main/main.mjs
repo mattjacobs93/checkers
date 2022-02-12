@@ -2,8 +2,12 @@
 /*-------------------------------- Imports --------------------------------*/
 
 import * as viewImport from "../view/view.mjs";
+import * as PlayerImport from "../model/player.mjs"
+import * as ModelImport from '../model/model.mjs'
 
 /*-------------------------------- Constants --------------------------------*/
+
+const Model = new ModelImport.Model(ModelImport.board)
 
 /*---------------------------- Variables (state) ----------------------------*/
 
