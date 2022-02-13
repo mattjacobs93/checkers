@@ -1,10 +1,12 @@
 /*--------------------------------export --------------------------------*/
 
-export {Model} 
+export {Model,NUM_ROWS,NUM_COLS,NUM_TILES} 
 
 /*-------------------------------- Constants --------------------------------*/
 
-
+const NUM_ROWS = 8
+const NUM_COLS = 8
+const NUM_TILES = NUM_ROWS * NUM_COLS
 /*---------------------------- Variables (state) ----------------------------*/
 
 /*------------------------ Cached Element References ------------------------*/
@@ -15,6 +17,7 @@ export {Model}
 
 class Model {
   #board
+  #controller
   
   constructor () {
     this.#board =  [
@@ -30,8 +33,16 @@ class Model {
     
   }
 
+  setController(controller) {
+    this.#controller = controller
+  }
+
   getGameBoard () {
     return this.#board
+  }
+
+  getGameBoardCopy () {
+    return this.#board.slice().map(el=>el.slice())
   }
 
 }

@@ -156,7 +156,7 @@ function getValidMoves (location, board) {
  return validMoves
 }
 
-console.log(board[2][1])
-let validMovesArray = getValidMoves([2,1],board)
-console.log(validMovesArray)
+// console.log(board[2][1])
+// let validMovesArray = getValidMoves([2,1],board)
+// console.log(validMovesArray)
 

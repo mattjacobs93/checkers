@@ -1,13 +1,15 @@
 
+/*-------------------------------- Imports --------------------------------*/
+import {getValidMoves} from "../controller/validator.mjs"
+import {Model,NUM_ROWS,NUM_COLS,NUM_TILES} from "../model/model.mjs"
+ 
 
 /*-------------------------------- Export(s) --------------------------------*/
-export {boardDisplay, createBoardDisplay}
+export {View}
 
 /*-------------------------------- Constants --------------------------------*/
 
-const NUM_ROWS = 8
-const NUM_COLS = 8
-const NUM_TILES = NUM_ROWS * NUM_COLS
+
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -21,17 +23,42 @@ let darkPiece = 'O'
 const boardDisplay = document.getElementById('board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-boardDisplay.addEventListener('click', boardClicked)
+
 /*-------------------------------- Classes --------------------------------*/
 
 /*-------------------------------- Functions --------------------------------*/
 
 
-function boardClicked (evt) {
-  console.log(evt.target.id)
+
+
+class View {
+  #controller
+  #model
+
+  constructor () {
+
+  }
+
+  setController (controller) {
+    this.#controller = controller
+  } 
+
+  setModel (model) {
+    this.#model = model
+  }
+ 
+boardClicked (evt) {
+  let id = parseInt(evt.target.id)
+  let row = Math.floor(id / NUM_ROWS)
+  let col = id - (row*NUM_COLS)
+  let move = [row,col]
+
+  let board = this.#controller.getBoardCopy()
+
+  console.log(id, row, col)
 }
 
-function createBoardDisplay(boardDiv,boardGame) {
+createBoardDisplay(boardDiv,boardGame) {
 
 
   function makeTile (row, col, idx) {
@@ -69,6 +96,4 @@ function createBoardDisplay(boardDiv,boardGame) {
 
 }
 
-
-
-
+}
