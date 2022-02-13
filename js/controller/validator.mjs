@@ -5,10 +5,10 @@ let board =  [
   [0,-1,0,-1,0,-1,0,-1],
   [-1,0,-1,0,-1,0,-1,0],
   [0,-1,0,-1,0,-1,0,-1],
-  [0,0,1,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0],
   [1,0,1,0,1,0,1,0],
-  [0,1,0,1,0,0,0,1],
+  [0,1,0,1,0,1,0,1],
   [1,0,1,0,1,0,1,0],
 ];
 
@@ -24,7 +24,7 @@ class Move {
   }
 
   copy (){
-      let copyMove = new Move([...this.movesArray], [...this.board])
+      let copyMove = new Move([...this.movesArray].map(el=>el.slice()), [...this.board].map(el=>el.slice()))
       copyMove.movesArray = copyMove.movesArray[0]
       return copyMove
   }
