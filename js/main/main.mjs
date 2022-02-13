@@ -31,6 +31,9 @@ function initGame() {
   controller.setModel(model)
   controller.setView(view)
   view.createBoardDisplay(boardDisplay,model.getGameBoardCopy())
+  let tiles = document.querySelectorAll("#board>div")
+  console.log(tiles)
+  view.addTiles(tiles)
   boardDisplay.addEventListener('click', (e)=>view.boardClicked(e))
 }
 

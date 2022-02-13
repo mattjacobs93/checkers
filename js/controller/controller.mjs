@@ -15,6 +15,6 @@ setView (view) {
   this.#view = view
 }
 getBoardCopy () {
-  //return 
+  return this.#model.getGameBoardCopy()
 }
 }

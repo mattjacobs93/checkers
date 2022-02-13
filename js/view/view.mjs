@@ -12,6 +12,8 @@ export {View}
 
 
 
+
+
 /*---------------------------- Variables (state) ----------------------------*/
 
 let lightColorTile = '#C4A484'
@@ -34,9 +36,15 @@ const boardDisplay = document.getElementById('board')
 class View {
   #controller
   #model
+  tiles
 
   constructor () {
 
+  }
+
+  addTiles(tiles) {
+    this.tiles = tiles
+    console.log('my tiles', this.tiles)
   }
 
   setController (controller) {
@@ -54,8 +62,25 @@ boardClicked (evt) {
   let move = [row,col]
 
   let board = this.#controller.getBoardCopy()
+  let validMoves = getValidMoves(move,board)
+  console.log('hi',validMoves)
+  this.addValidMovesToBoard(validMoves)
+  //console.log(id, row, col)
+}
 
-  console.log(id, row, col)
+addValidMovesToBoard (validMoves) {
+  function addMoveToBoard(move,tiles) {
+    let row = move[0]
+    let col = move[1]
+    let id = (NUM_COLS * row) + col
+    console.log(tiles)
+    tiles[id].classList.add('possibleMove')
+    //document.getElementById(id.toString()).classList.add('possibleMove')
+  }
+ 
+  console.log('2',validMoves, this.tiles)
+  this.tiles.forEach(tiles=>tiles.classList.remove('possibleMove'))
+  validMoves.forEach(move=>{addMoveToBoard(move.movesArray[move.movesArray.length-1],this.tiles)})
 }
 
 createBoardDisplay(boardDiv,boardGame) {
@@ -76,7 +101,7 @@ createBoardDisplay(boardDiv,boardGame) {
     tile.classList.add((((idx%2)+(row%2))%2 === 1) ? 'dark' : 'light')
     tile.id = idx.toString()
     tile.textContent = (boardGame[row][col] === 0 ) ? ' '
-      : (boardGame[row][col] === 1) ? lightPiece
+      : (boardGame[row][col] >= 1) ? lightPiece
       : darkPiece
     setTileBackground(tile, idx)
     return tile
