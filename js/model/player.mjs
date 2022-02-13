@@ -27,8 +27,12 @@ class Player {
     return this.#opponent
   }
 
-  getTilePieceChar() {
-    
+  getCheckerTileValue() {
+    return this.#checkerTile
+  }
+  
+  tileBelongsToPlayer(locationValue) {
+    return (locationValue > 0 && this.#checkerTile > 0) || (locationValue < 0 && this.#checkerTile < 0)
   }
 }
 

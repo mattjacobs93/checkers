@@ -38,7 +38,7 @@ function getPlayers () {
   const setUpPlayers = (player1,player2) => {
     player1.setOpponent(player2)
     player2.setOpponent(player1)
-    returns [player1,player2]
+    return [player1,player2]
   }
 
 
@@ -57,13 +57,15 @@ function initGame() {
   model.setController(controller)
   controller.setModel(model)
   controller.setView(view)
-  view.createBoardDisplay(boardDisplay,model.getGameBoardCopy())
+  view.setBoardDiv(boardDisplay)
+  view.createBoardAtBeginning(model.getGameBoardCopy())
   let tiles = document.querySelectorAll("#board>div")
-  console.log(tiles)
+  //console.log(tiles)
   view.addTiles(tiles)
-  boardDisplay.addEventListener('click', (e)=>view.boardClicked(e))
+  boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
   players = getPlayers()
   activePlayer = players[0]
+  controller.setActivePlayer(activePlayer)
 }
 
 function main() {

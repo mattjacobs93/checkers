@@ -2,8 +2,6 @@
 /*-------------------------------- Imports --------------------------------*/
 import {getValidMoves} from "../controller/validator.mjs"
 import {Model,NUM_ROWS,NUM_COLS,NUM_TILES} from "../model/model.mjs"
- 
-
 /*-------------------------------- Export(s) --------------------------------*/
 export {View}
 
@@ -19,8 +17,10 @@ export {View}
 let lightColorTile = '#C4A484'
 let darkColorTile = '#a0522d'
 let lightPiece = 'X'
+let lightPieceKing = 'KX'
 let darkPiece = 'O'
-
+let darkPieceKing = 'KO'
+let emptyPiece = ''
 /*------------------------ Cached Element References ------------------------*/
 const boardDisplay = document.getElementById('board')
 
@@ -31,20 +31,52 @@ const boardDisplay = document.getElementById('board')
 /*-------------------------------- Functions --------------------------------*/
 
 
+const pieceMap = {
+   '2': lightPieceKing,
+   '1': lightPiece,
+   '0': emptyPiece,
+  '-1': darkPiece,
+  '-2': darkPieceKing,
+}
 
 
 class View {
   #controller
   #model
   tiles
+  moveFrom
+  moveTo
+  activePlayer
+  boardDiv
 
   constructor () {
 
   }
 
+
+  /**
+   * 
+   * function renderMove (moveObject) {renders the move to screen}
+   * 
+   * function renderBoard() {renders board} 
+   * 
+   * function acceptButtonClick (evt) {gives controller row and col of clicked button}
+   * 
+   * function renderValidMovesToBoard(validMoves) {renders valid moves to board}
+   *  
+   */
+
+
+
+
+  setActivePlayer(player) {
+    this.activePlayer = player
+  }
+
+
   addTiles(tiles) {
     this.tiles = tiles
-    console.log('my tiles', this.tiles)
+    //console.log('my tiles', this.tiles)
   }
 
   setController (controller) {
@@ -54,47 +86,90 @@ class View {
   setModel (model) {
     this.#model = model
   }
+
+renderMove(moveObject) {
+  console.log('hi' ,moveObject.board)
+  this.renderBoard(moveObject.board)
+
+}
+
+// updateMove (location,board) {
+
+//   let locationValue = board[location[0]][location[1]]
+//   if (!this.moveFrom) this.moveFrom = location
+//   let validMovesFrom = getValidMoves(this.moveFrom,board).map(el=>el.movesArray[1][1])
+//   console.log(validMovesFrom)
+  
+//   if ((locationValue > 0 && this.activePlayer.getCheckerTileValue() > 0) || (locationValue < 0 && this.activePlayer.getCheckerTileValue() < 0)) {
+//     this.moveFrom = location
+//     let validMovesMoveFrom = getValidMoves(this.moveFrom, board)
+//     this.renderValidMovesToBoard(validMovesMoveFrom)
+//    } else if (locationValue === 0 && location in validMovesFrom) {
+//      this.moveTo = location
+//      this.renderMove(this.moveFrom,this.moveTo)
+//    }
  
-boardClicked (evt) {
+//   console.log("loc value", locationValue)
+//   let validMoves = getValidMoves(location,board)
+//   //console.log('hi',validMoves)
+//   this.renderValidMovesToBoard(validMoves)
+// }
+ 
+acceptBoardClick (evt) {
   let id = parseInt(evt.target.id)
   let row = Math.floor(id / NUM_ROWS)
   let col = id - (row*NUM_COLS)
-  let move = [row,col]
+  let location = [row,col]
+  this.#controller.processClick(id, location)
 
-  let board = this.#controller.getBoardCopy()
-  let validMoves = getValidMoves(move,board)
-  console.log('hi',validMoves)
-  this.addValidMovesToBoard(validMoves)
+  
+  
+
   //console.log(id, row, col)
 }
 
-addValidMovesToBoard (validMoves) {
+renderValidMovesToBoard (validMoves) {
   function addMoveToBoard(move,tiles) {
     let row = move[0]
     let col = move[1]
     let id = (NUM_COLS * row) + col
-    console.log(tiles)
+    //console.log(tiles)
     tiles[id].classList.add('possibleMove')
     //document.getElementById(id.toString()).classList.add('possibleMove')
   }
  
-  console.log('2',validMoves, this.tiles)
+ // console.log('2',validMoves, this.tiles)
   this.tiles.forEach(tiles=>tiles.classList.remove('possibleMove'))
   validMoves.forEach(move=>{addMoveToBoard(move.movesArray[move.movesArray.length-1],this.tiles)})
 }
 
-createBoardDisplay(boardDiv,boardGame) {
+setBoardDiv(boardDiv) {
+  this.boardDiv = boardDiv
+}
 
+renderBoard(board) {
+  for (let i = 0; i < NUM_ROWS; i++) {
+    for (let j = 0; j < NUM_COLS; j++) {
+      let tileId = (i * NUM_COLS) + j
+      let currBoardValue = board[i][j]
+     // console.log(tileId, this.tiles[0])
+      this.tiles[tileId].textContent = pieceMap[currBoardValue.toString()]
+    }
+  }
+}
+
+createBoardAtBeginning(boardGame) {
+  let boardDiv = this.boardDiv
 
   function makeTile (row, col, idx) {
 
     function setTileBackground (tile) {
       //console.log(tile.classList)
       if (tile.classList.contains('light')) tile.style.backgroundColor = lightColorTile
-      else tile.style.backgroundColor = darkColorTile
-      
+      else tile.style.backgroundColor = darkColorTile 
     }
 
+    
     let tile = document.createElement('div')
 
     //console.log(board)

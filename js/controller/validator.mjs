@@ -1,5 +1,5 @@
 
-export {getValidMoves}
+export {getValidMoves,Move}
 
 let board =  [
   [0,-1,0,-1,0,-1,0,-1],
@@ -55,7 +55,7 @@ function getValidMoves (location, board) {
 
 
  function checkImmediatelyAdjacent (startingLocation, possibleAdjacent, board, validMoves) {
-  console.log('beginning of check immediately adjacent' ,board[2][1])
+  //console.log('beginning of check immediately adjacent' ,board[2][1])
   
   try {
     if (board[possibleAdjacent[0]][possibleAdjacent[1]] === 0) {
@@ -70,7 +70,7 @@ function getValidMoves (location, board) {
       let newMove = new Move(movesArray, newBoard)
       newMove.movesArray = newMove.movesArray[0]
       validMoves.push(newMove)
-      console.log('end of check immediately adjacent', board[2][1])
+     // console.log('end of check immediately adjacent', board[2][1])
 
     }
    } catch {
@@ -86,7 +86,7 @@ function getValidMoves (location, board) {
 
       if (Math.abs(pieceValue) > 1 || (pieceValue === 1 && i === -1) || (pieceValue === -1 && i === 1)) {
         let possibleAdjacent = [location[0] + i, location[1] + j]
-        console.log('hello' ,board[2][1])
+       // console.log('hello' ,board[2][1])
         checkImmediatelyAdjacent(location, possibleAdjacent, board, validMoves)
       }
 
@@ -108,7 +108,7 @@ function getValidMoves (location, board) {
   }
 
   let pieceValue = board[location[0]][location[1]] 
-  console.log('starting skip values',location[0],location[1], pieceValue)
+  //console.log('starting skip values',location[0],location[1], pieceValue)
   
 
   for (let i = -2; i <= 2; i += 4) {
@@ -149,10 +149,11 @@ function getValidMoves (location, board) {
 
  }
  
- console.log(board[2][1])
+ //console.log(board[2][1])
  skip(location,board,validMoves,0,new Move(location,[...board]))
  
  //console.log(validMoves)
+ //console.log('hi there',validMoves[0].board)
  return validMoves
 }
 
