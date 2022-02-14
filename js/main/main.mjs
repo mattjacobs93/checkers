@@ -57,15 +57,22 @@ function initGame() {
   model.setController(controller)
   controller.setModel(model)
   controller.setView(view)
-  view.setBoardDiv(boardDisplay)
-  view.createBoardAtBeginning(model.getGameBoardCopy())
-  let tiles = document.querySelectorAll("#board>div")
+
+  
   //console.log(tiles)
-  view.addTiles(tiles)
+  
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
   players = getPlayers()
   activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
   controller.setActivePlayer(activePlayer)
+  view.setBoardDiv(boardDisplay)
+
+  let boardAtBeginning = model.getGameBoardCopy()
+ //console.log(boardAtBeginning) 
+  view.createBoardAtBeginning(boardAtBeginning)
+  let tiles = document.querySelectorAll("#board>div")
+  view.addTiles(tiles)
+  view.renderPossibleFromTiles(boardAtBeginning)
 }
 
 function main() {

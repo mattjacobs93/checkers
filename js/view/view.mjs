@@ -134,12 +134,12 @@ renderValidMovesToBoard (validMoves) {
     let col = move[1]
     let id = (NUM_COLS * row) + col
     //console.log(tiles)
-    tiles[id].classList.add('possibleMove')
+    tiles[id].classList.add('possibleMoveTo')
     //document.getElementById(id.toString()).classList.add('possibleMove')
   }
  
  // console.log('2',validMoves, this.tiles)
-  this.tiles.forEach(tiles=>tiles.classList.remove('possibleMove'))
+  this.tiles.forEach(tiles=>tiles.classList.remove('possibleMoveTo'))
   validMoves.forEach(move=>{addMoveToBoard(move.movesArray[move.movesArray.length-1],this.tiles)})
 }
 
@@ -155,6 +155,26 @@ renderBoard(board) {
      // console.log(tileId, this.tiles[0])
       this.tiles[tileId].textContent = pieceMap[currBoardValue.toString()]
     }
+  }
+}
+
+cleanBoard() {
+  this.tiles.forEach(tile => {tile.classList.remove('possibleMoveFrom'); tile.classList.remove('possbileMoveTo')})
+}
+
+renderPossibleFromTiles (board) {
+  let possibleMovesBoard = this.#controller.getLocationsOfPossibleMovesFrom(board)
+  for (let row = 0; row < NUM_ROWS; row++) {
+    for (let col = 0; col < NUM_COLS; col++) {
+      this.tiles[(row * NUM_COLS) + col].classList.remove('possibleMoveFrom')
+        if (possibleMovesBoard[row][col] === 1) {
+          //console.log(this.tiles)
+          this.tiles[(row * NUM_COLS) + col].classList.add('possibleMoveFrom')
+        }
+
+
+    }
+
   }
 }
 

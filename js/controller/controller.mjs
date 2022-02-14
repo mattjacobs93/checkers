@@ -1,4 +1,5 @@
 import {model} from "../main/main.mjs"
+import { NUM_COLS, NUM_ROWS } from "../model/model.mjs"
 import {getValidMoves,Move} from "./validator.mjs"
 export {Controller}
 
@@ -29,8 +30,48 @@ setActivePlayer(player) {
 }
 
 
+getLocationsOfPossibleMovesFrom (board) {
+ // let possibleMovesBoard = Array(NUM_ROWS).fill(Array(NUM_COLS).fill(0))
+ let possibleMovesBoard = [
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0],
+]
 
 
+  for (let i = 0; i < NUM_ROWS; i++) {
+    for (let j = 0; j < NUM_COLS; j++) {
+      //console.log(this)
+     let currTileBelongsToActivePlayer = this.#activePlayer.tileBelongsToPlayer(board[i][j])
+     let boardCopy = board.slice().map(el=>el.slice())
+     let hasPossibleMoves = getValidMoves([i,j],boardCopy).length > 0
+      if (currTileBelongsToActivePlayer && hasPossibleMoves) {
+          possibleMovesBoard[i][j] = 1
+      }
+
+    }
+
+
+  }
+
+  return possibleMovesBoard
+}
+
+switchPlayer() {
+  //console.log('0000000')
+  this.#activePlayer.toggleActivePlayer()
+  //console.log('11111')
+  let board = this.#model.getGameBoardCopy()
+  //console.log('2222222222')
+  //let possibleMovesFrom = this.getLocationsOfPossibleMovesFrom(board)
+  this.#view.renderPossibleFromTiles(board)
+  //console.log('do I get here')
+}
 
 processClick(id,location) {
 
@@ -40,6 +81,7 @@ processClick(id,location) {
   //take away all valid moves currently displayed on board
   (() => {
     this.#view.renderValidMovesToBoard([])
+    this.#view.cleanBoard()
   })() 
 
   //console.log(this.#activePlayer.getActivePlayer())
@@ -91,8 +133,8 @@ processClick(id,location) {
         //console.log('chosen move value',chosenMove.board[3][4])
         this.#model.setBoard(chosenMove.board)
         this.#view.renderMove(chosenMove)
-        this.#activePlayer.toggleActivePlayer()
         this.#validMoves = []
+        this.switchPlayer()
       } 
       
      else {
@@ -106,6 +148,10 @@ processClick(id,location) {
 
 
   
+    }
+
+    else {
+      this.#view.renderPossibleFromTiles(board)
     }
   }
 }

@@ -27,6 +27,10 @@ div div:hover {
   border: 3px solid red;
 }
 
-.possibleMove {
+.possibleMoveTo {
   border: 3px solid purple;
+}
+
+.possibleMoveFrom {
+  border: 3px solid blue;
 }
