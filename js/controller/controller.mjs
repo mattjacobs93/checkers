@@ -71,7 +71,9 @@ getLocationsOfPossibleMovesFrom (board) {
   return possibleMovesBoard
 }
 
-
+locationToID(location) {
+  return (location[0]*NUM_COLS) + location[1]
+}
 
 
 aiMove () {
@@ -86,10 +88,21 @@ aiMove () {
  // console.log('got board copy from model', boardCopy)
   let moveObj = new Move(null,boardCopy)
 
-  let maxDepth = 5
+  let maxDepth = (this.#activePlayer.getActivePlayer() === 0) ? 5 : 2 
   let chosenMoveObj = minmax(moveObj,0,maxDepth,this.#activePlayer.getActivePlayer(), -1*Infinity, Infinity)
   //console.log('my chosen move obj',chosenMoveObj)
-  this.moveChosen(chosenMoveObj)
+ 
+ 
+ 
+ ///// this.moveChosen(chosenMoveObj)
+ console.log(chosenMoveObj)
+ let from = chosenMoveObj.movesArray[0]
+ let fromID = this.locationToID(from)
+ let to = chosenMoveObj.movesArray[chosenMoveObj.movesArray.length - 1]
+ let toID = this.locationToID(to)
+
+ this.processClick(fromID,from)
+ this.processClick(toID, to)
 }
 
 switchPlayer() {
@@ -104,11 +117,13 @@ switchPlayer() {
   this.#view.renderActiveTile(null)
   this.#view.renderPossibleFromTiles(board)
   //console.log('do I get here')
-  
+  setTimeout(() =>
+  {
   if (this.#activePlayer.isAI()) {
     //console.log('switching to AI player')
     this.aiMove()
   }
+},10)
 }
 
 
