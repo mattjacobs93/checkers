@@ -64,19 +64,29 @@ processClick(id,location) {
     this.#view.renderValidMovesToBoard(this.#validMoves)
   }
 
-  else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0) {
+  else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0 ) {
     //console.log('valid destination')
-    console.log('applying move and changing player')
-    this.#to = location
-    let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === this.#to[0] && el.movesArray[el.movesArray.length-1][1] === this.#to[1])[0]
-    //console.log(chosenMove)
-    console.log('my chosen move', chosenMove)
-    console.log('chosen move value',chosenMove.board[3][4])
-    this.#model.setBoard(chosenMove.board)
-    this.#view.renderMove(chosenMove)
-    this.#activePlayer.toggleActivePlayer()
-    this.#validMoves = []
+
     
+    
+    
+    let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === location[0] && el.movesArray[el.movesArray.length-1][1] === location[1])[0]
+
+    let beginningOfMove = chosenMove.movesArray[0]
+    let valueAtBeginningOfMove = board[beginningOfMove[0]][beginningOfMove[1]]
+
+    if (this.#activePlayer.tileBelongsToPlayer(valueAtBeginningOfMove))
+    {
+      this.#to = location
+      console.log('applying move and changing player')
+      //console.log(chosenMove)
+      console.log('my chosen move', chosenMove)
+      console.log('chosen move value',chosenMove.board[3][4])
+      this.#model.setBoard(chosenMove.board)
+      this.#view.renderMove(chosenMove)
+      this.#activePlayer.toggleActivePlayer()
+      this.#validMoves = []
+    } 
     
   } else {
     this.#from = null
