@@ -34,7 +34,7 @@ let players
 
 
 
-function getPlayers () {
+function getPlayers (isAIPlayer1, isAIPlayer2) {
   const setUpPlayers = (player1,player2) => {
     player1.setOpponent(player2)
     player2.setOpponent(player1)
@@ -42,9 +42,10 @@ function getPlayers () {
   }
 
 
-  let player1  = new PlayerImport.Player(player1Value)
-  let player2 = new PlayerImport.Player(player2Value)
+  let player1  = new PlayerImport.Player(player1Value,isAIPlayer1)
+  let player2 = new PlayerImport.Player(player2Value, isAIPlayer2)
   let players = setUpPlayers(player1,player2)
+  console.log(players)
 
   return players
 }
@@ -62,8 +63,9 @@ function initGame() {
   //console.log(tiles)
   
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
-  players = getPlayers()
+  players = getPlayers(false,true)
   activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
+  console.log(activePlayer)
   controller.setActivePlayer(activePlayer)
   view.setBoardDiv(boardDisplay)
 

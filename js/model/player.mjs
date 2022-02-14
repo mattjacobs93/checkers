@@ -30,6 +30,10 @@ class ActivePlayer {
   getActivePlayer() {
     return this.#activePlayerNum
   }
+
+  isAI () {
+    return this.#players[this.#activePlayerNum].isPlayerAI()
+  }
 }
 
 
@@ -37,9 +41,11 @@ class Player {
   #opponent
   #checkerTile
   #kingTile
-  constructor (playerNum) {
+  #isAI
+  constructor (playerNum,isAI) {
     this.#checkerTile = playerNum
     this.#kingTile = playerNum * 2
+    this.#isAI = isAI
   }
 
   setOpponent (opponent) {
@@ -56,6 +62,10 @@ class Player {
   
   tileBelongsToPlayer(locationValue) {
     return (locationValue > 0 && this.#checkerTile > 0) || (locationValue < 0 && this.#checkerTile < 0)
+  }
+
+  isPlayerAI () {
+    return this.#isAI
   }
 }
 

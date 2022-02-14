@@ -1,6 +1,7 @@
 import {model} from "../main/main.mjs"
 import { NUM_COLS, NUM_ROWS } from "../model/model.mjs"
 import {getValidMoves,Move} from "./validator.mjs"
+import {minmax} from "../AI/minmax.mjs"
 export {Controller}
 
 //console.log(model)
@@ -62,15 +63,45 @@ getLocationsOfPossibleMovesFrom (board) {
   return possibleMovesBoard
 }
 
+
+
+
+aiMove () {
+  //console.log('in AI Move')
+  
+  let boardCopy = this.#model.getGameBoardCopy()
+ // console.log('got board copy from model', boardCopy)
+  let moveObj = new Move(null,boardCopy)
+  let chosenMoveObj = minmax(moveObj,0,3,this.#activePlayer.getActivePlayer())
+  //console.log('my chosen move obj',chosenMoveObj)
+  this.moveChosen(chosenMoveObj)
+}
+
 switchPlayer() {
+  
   //console.log('0000000')
   this.#activePlayer.toggleActivePlayer()
+  //console.log(this.#activePlayer.isAI())
   //console.log('11111')
   let board = this.#model.getGameBoardCopy()
   //console.log('2222222222')
   //let possibleMovesFrom = this.getLocationsOfPossibleMovesFrom(board)
+  this.#view.renderActiveTile(null)
   this.#view.renderPossibleFromTiles(board)
   //console.log('do I get here')
+  
+  if (this.#activePlayer.isAI()) {
+    //console.log('switching to AI player')
+    this.aiMove()
+  }
+}
+
+
+moveChosen (chosenMove) {
+  this.#model.setBoard(chosenMove.board)
+  this.#view.renderMove(chosenMove)
+  this.#validMoves = []
+  this.switchPlayer()
 }
 
 processClick(id,location) {
@@ -132,10 +163,12 @@ processClick(id,location) {
         //console.log(chosenMove)
         //console.log('my chosen move', chosenMove)
         //console.log('chosen move value',chosenMove.board[3][4])
-        this.#model.setBoard(chosenMove.board)
-        this.#view.renderMove(chosenMove)
-        this.#validMoves = []
-        this.switchPlayer()
+
+        this.moveChosen(chosenMove)
+        // this.#model.setBoard(chosenMove.board)
+        // this.#view.renderMove(chosenMove)
+        // this.#validMoves = []
+        // this.switchPlayer()
       } 
       
      else {
@@ -159,3 +192,5 @@ processClick(id,location) {
     }
   }
 }
+
+

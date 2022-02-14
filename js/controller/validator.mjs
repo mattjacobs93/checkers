@@ -18,10 +18,12 @@ class Move {
   skip
   board
   movesArray
+  value
   constructor (moveLocation, board) {
     this.movesArray = [moveLocation]
     this.skip = false
     this.board = board
+    //this.value = -1
   }
 
   copy (){
