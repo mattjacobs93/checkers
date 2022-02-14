@@ -1,3 +1,4 @@
+import { NUM_ROWS } from "../model/model.mjs"
 
 export {getValidMoves,Move}
 
@@ -134,7 +135,7 @@ function getValidMoves (location, board) {
               boardCopy[skipLocation[0]][skipLocation[1]] = pieceValue
               boardCopy[adjacentLocation[0]][adjacentLocation[1]] = 0
               let moveObjCopy = moveObj.copy()
-              console.log('about to recursively skip')
+              //console.log('about to recursively skip')
               skip(skipLocation,boardCopy,validMoves,numMoves+1,moveObjCopy)
             }
 
@@ -155,6 +156,18 @@ function getValidMoves (location, board) {
  
  //console.log(validMoves)
  //console.log('hi there',validMoves[0].board)
+
+const makeKings = (validMoves) => {
+  validMoves.forEach(el => {
+    el.board[NUM_ROWS-1] = el.board[NUM_ROWS-1].map(el => (el === -1) ? -2 : el )
+    el.board[0] = el.board[0].map(el => (el === 1) ? 2 : el)
+  })
+}
+
+  
+
+makeKings(validMoves)
+
  return validMoves
 }
 

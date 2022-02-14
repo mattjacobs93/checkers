@@ -42,7 +42,7 @@ processClick(id,location) {
     this.#view.renderValidMovesToBoard([])
   })() 
 
-  console.log(this.#activePlayer.getActivePlayer())
+  //console.log(this.#activePlayer.getActivePlayer())
 
 
   //console.log('hi click', location)
@@ -85,10 +85,10 @@ processClick(id,location) {
       if (this.#activePlayer.tileBelongsToPlayer(valueAtBeginningOfMove))
       {
         this.#to = location
-        console.log('applying move and changing player')
+        //console.log('applying move and changing player')
         //console.log(chosenMove)
-        console.log('my chosen move', chosenMove)
-        console.log('chosen move value',chosenMove.board[3][4])
+        //console.log('my chosen move', chosenMove)
+        //console.log('chosen move value',chosenMove.board[3][4])
         this.#model.setBoard(chosenMove.board)
         this.#view.renderMove(chosenMove)
         this.#activePlayer.toggleActivePlayer()

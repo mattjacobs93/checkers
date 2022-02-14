@@ -88,7 +88,7 @@ class View {
   }
 
 renderMove(moveObject) {
-  console.log('hi' ,moveObject.board)
+  //console.log('hi' ,moveObject.board)
   this.renderBoard(moveObject.board)
 
 }
