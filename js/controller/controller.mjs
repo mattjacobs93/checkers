@@ -76,12 +76,17 @@ getLocationsOfPossibleMovesFrom (board) {
 
 aiMove () {
   //console.log('in AI Move')
+
+  (() => {
+    this.#view.renderValidMovesToBoard([])
+    this.#view.cleanBoard()
+  })() 
   
   let boardCopy = this.#model.getGameBoardCopy()
  // console.log('got board copy from model', boardCopy)
   let moveObj = new Move(null,boardCopy)
 
-  let maxDepth = (this.#activePlayer.getActivePlayer() === 0) ? 1 : 6
+  let maxDepth = 5
   let chosenMoveObj = minmax(moveObj,0,maxDepth,this.#activePlayer.getActivePlayer(), -1*Infinity, Infinity)
   //console.log('my chosen move obj',chosenMoveObj)
   this.moveChosen(chosenMoveObj)

@@ -63,7 +63,7 @@ function initGame() {
   //console.log(tiles)
   
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
-  players = getPlayers(true,true)
+  players = getPlayers(false,true)
   activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
   console.log(activePlayer)
   controller.setActivePlayer(activePlayer)
@@ -75,13 +75,15 @@ function initGame() {
   let tiles = document.querySelectorAll("#board>div")
   view.addTiles(tiles)
   view.renderPossibleFromTiles(boardAtBeginning)
-  if (activePlayer.isAI()) {
-    controller.aiMove()
-  }
+
 }
 
 function main() {
   initGame()
+
+  if (activePlayer.isAI()) {
+    controller.aiMove()
+  }
 }
 
 main()

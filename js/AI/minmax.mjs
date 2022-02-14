@@ -93,7 +93,7 @@ function minmax (moveObject,currDepth,maxDepth,player,alpha,beta) {
        // console.log('about to call minmax helper')
        let solvedChildValue = minmax(child,currDepth+1,maxDepth,(player+1)%2,alpha,beta)
        child.value = solvedChildValue
-       console.log('child value: ' , solvedChildValue)
+       //console.log('child value: ' , solvedChildValue)
       if (player === 0) {
       //  console.log('hi from player 0')
         if (child.value > beta) {
