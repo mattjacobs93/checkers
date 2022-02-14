@@ -49,8 +49,14 @@ processClick(id,location) {
   let board = this.getBoardCopy()
 
   //console.log(validMovesDestinations)
-  let locationValue = board[location[0]][location[1]]
 
+  let locationValue
+  try
+  {
+  locationValue = board[location[0]][location[1]]
+  } catch {
+    return
+  }
   //console.log(this.#validMovesDestinations.filter(el=>console.log(el[0])))
 
 
@@ -70,30 +76,36 @@ processClick(id,location) {
     
     
     
-    let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === location[0] && el.movesArray[el.movesArray.length-1][1] === location[1])[0]
+    try {
+      let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === location[0] && el.movesArray[el.movesArray.length-1][1] === location[1])[0]
 
-    let beginningOfMove = chosenMove.movesArray[0]
-    let valueAtBeginningOfMove = board[beginningOfMove[0]][beginningOfMove[1]]
-
-    if (this.#activePlayer.tileBelongsToPlayer(valueAtBeginningOfMove))
-    {
-      this.#to = location
-      console.log('applying move and changing player')
-      //console.log(chosenMove)
-      console.log('my chosen move', chosenMove)
-      console.log('chosen move value',chosenMove.board[3][4])
-      this.#model.setBoard(chosenMove.board)
-      this.#view.renderMove(chosenMove)
-      this.#activePlayer.toggleActivePlayer()
+      let beginningOfMove = chosenMove.movesArray[0]
+      let valueAtBeginningOfMove = board[beginningOfMove[0]][beginningOfMove[1]]
+  
+      if (this.#activePlayer.tileBelongsToPlayer(valueAtBeginningOfMove))
+      {
+        this.#to = location
+        console.log('applying move and changing player')
+        //console.log(chosenMove)
+        console.log('my chosen move', chosenMove)
+        console.log('chosen move value',chosenMove.board[3][4])
+        this.#model.setBoard(chosenMove.board)
+        this.#view.renderMove(chosenMove)
+        this.#activePlayer.toggleActivePlayer()
+        this.#validMoves = []
+      } 
+      
+     else {
+      this.#from = null
       this.#validMoves = []
-    } 
-    
-  } else {
-    this.#from = null
-    this.#validMoves = []
-    this.#view.renderValidMovesToBoard(this.#validMoves)
-  }
+      this.#view.renderValidMovesToBoard(this.#validMoves)
+    }
+  
+
+    } catch {}
+
 
   
-}
+    }
+  }
 }
