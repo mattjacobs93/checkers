@@ -110,6 +110,7 @@ processClick(id,location) {
     //console.log(this)
     this.#validMovesDestinations = this.#validMoves.map(el=>el.movesArray[el.movesArray.length-1])
     this.#view.renderValidMovesToBoard(this.#validMoves)
+    this.#view.renderActiveTile(id)
   }
 
   else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0 ) {
@@ -140,7 +141,9 @@ processClick(id,location) {
      else {
       this.#from = null
       this.#validMoves = []
+      this.#view.renderActiveTile(null)
       this.#view.renderValidMovesToBoard(this.#validMoves)
+      
     }
   
 
@@ -151,6 +154,7 @@ processClick(id,location) {
     }
 
     else {
+      this.#view.renderActiveTile(null)
       this.#view.renderPossibleFromTiles(board)
     }
   }

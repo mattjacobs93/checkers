@@ -34,3 +34,7 @@ div div:hover {
 .possibleMoveFrom {
   border: 3px solid blue;
 }
+
+.activeTile {
+  border: 3px solid red;
+}

@@ -158,6 +158,11 @@ renderBoard(board) {
   }
 }
 
+renderActiveTile(id) {
+  this.tiles.forEach(tile => tile.classList.remove('activeTile'))
+  if (id) this.tiles[id].classList.add('activeTile')
+}
+
 cleanBoard() {
   this.tiles.forEach(tile => {tile.classList.remove('possibleMoveFrom'); tile.classList.remove('possbileMoveTo')})
 }
