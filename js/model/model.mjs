@@ -57,6 +57,10 @@ class Model {
     return this.#board.slice().map(el=>el.slice())
   }
 
+  setBoard(board) {
+    this.#board = board
+  }
+
 }
 
 /*-------------------------------- Functions --------------------------------*/

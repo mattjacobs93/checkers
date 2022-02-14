@@ -64,7 +64,7 @@ function initGame() {
   view.addTiles(tiles)
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
   players = getPlayers()
-  activePlayer = players[0]
+  activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
   controller.setActivePlayer(activePlayer)
 }
 

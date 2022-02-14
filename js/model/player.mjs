@@ -1,5 +1,5 @@
 /*-------------------------------- Exports --------------------------------*/
-export {Player}
+export {Player, ActivePlayer}
 /*-------------------------------- Constants --------------------------------*/
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -9,6 +9,29 @@ export {Player}
 /*----------------------------- Event Listeners -----------------------------*/
 
 /*-------------------------------- Classes --------------------------------*/
+
+
+class ActivePlayer {
+  #players
+  #activePlayerNum
+  constructor(player1,player2) {
+    this.#players = [player1, player2]
+    this.#activePlayerNum = 0
+  }
+
+  tileBelongsToPlayer(locationValue) {
+      return this.#players[this.#activePlayerNum].tileBelongsToPlayer(locationValue)
+  }
+
+  toggleActivePlayer () {
+    this.#activePlayerNum = (this.#activePlayerNum + 1) % 2
+  }
+
+  getActivePlayer() {
+    return this.#activePlayerNum
+  }
+}
+
 
 class Player {
   #opponent

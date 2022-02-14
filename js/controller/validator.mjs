@@ -1,16 +1,16 @@
 
 export {getValidMoves,Move}
 
-let board =  [
-  [0,-1,0,-1,0,-1,0,-1],
-  [-1,0,-1,0,-1,0,-1,0],
-  [0,-1,0,-1,0,-1,0,-1],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [1,0,1,0,1,0,1,0],
-  [0,1,0,1,0,1,0,1],
-  [1,0,1,0,1,0,1,0],
-];
+// let board =  [
+//   [0,-1,0,-1,0,-1,0,-1],
+//   [-1,0,-1,0,-1,0,-1,0],
+//   [0,-1,0,-1,0,-1,0,-1],
+//   [0,0,0,0,0,0,0,0],
+//   [0,0,0,0,0,0,0,0],
+//   [1,0,1,0,1,0,1,0],
+//   [0,1,0,1,0,1,0,1],
+//   [1,0,1,0,1,0,1,0],
+// ];
 
 //console.log('board after init: ' ,board[2])
 class Move {
@@ -64,7 +64,7 @@ function getValidMoves (location, board) {
       //console.log('new board',newBoard[2][1])
       //newBoard[2][1] = 1000
       //console.log(board[2][1])
-      newBoard[possibleAdjacent[0]][possibleAdjacent[1]] = 1;
+      newBoard[possibleAdjacent[0]][possibleAdjacent[1]] = newBoard[startingLocation[0]][startingLocation[1]];
       newBoard[startingLocation[0]][startingLocation[1]] = 0;
       let movesArray = [startingLocation, possibleAdjacent]
       let newMove = new Move(movesArray, newBoard)
@@ -104,6 +104,7 @@ function getValidMoves (location, board) {
 
   if (numMoves > 0) {
     moveObj.movesArray.push(location)
+    moveObj.board = board
     validMoves.push(moveObj) 
   }
 
