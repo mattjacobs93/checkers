@@ -14,6 +14,14 @@ class Controller {
 #activePlayer
 #validMovesDestinations
 #validMoves
+#alpha
+#beta
+
+  constructor () {
+    this.#alpha = -1 * Infinity //-100000000
+    this.#beta = Infinity //100000000
+  }
+
 
 setModel (model) {
   this.#model = model
@@ -72,7 +80,9 @@ aiMove () {
   let boardCopy = this.#model.getGameBoardCopy()
  // console.log('got board copy from model', boardCopy)
   let moveObj = new Move(null,boardCopy)
-  let chosenMoveObj = minmax(moveObj,0,3,this.#activePlayer.getActivePlayer())
+
+  let maxDepth = (this.#activePlayer.getActivePlayer() === 0) ? 1 : 6
+  let chosenMoveObj = minmax(moveObj,0,maxDepth,this.#activePlayer.getActivePlayer(), -1*Infinity, Infinity)
   //console.log('my chosen move obj',chosenMoveObj)
   this.moveChosen(chosenMoveObj)
 }

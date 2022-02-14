@@ -3,6 +3,7 @@ import * as modelImport from "../model/model.mjs"
 import { MoveSequence } from "../controller/moveSequence.mjs"
 import { gameOver } from "../controller/gameOver.mjs"
 import { evalBoard } from "../controller/evalBoard.mjs"
+import { getDeepCopy } from "../controller/getDeepCopy.mjs"
 
 export {minmax}
 
@@ -25,7 +26,7 @@ const belongsToPlayer = (player,currValue) => {
 } 
 
 
-function minmax (moveObject,currDepth,maxDepth,player) {
+function minmax (moveObject,currDepth,maxDepth,player,alpha,beta) {
 
 
 
@@ -85,24 +86,69 @@ function minmax (moveObject,currDepth,maxDepth,player) {
 
 //console.log('my children', children)
 
-  children.forEach((child,i) => {
-   // console.log('about to call minmax helper')
-    child.value = minmax(child,currDepth+1,maxDepth,(player+1)%2).value
-    
-    //console.log('called minmax helper')
+  let numChildren = children.length
+  for (let i = 0; i < numChildren; i++) {
+    let child = children[i]
 
-    if (!maxChild && !minChild) {
-        maxChild = child
-        minChild = child
-        maxIdx = i
-        minIdx = i
-    }
-    
-    else if (child.value > maxChild.value) {maxChild = child; maxIdx = i}
-    else if (child.value < minChild.value) {minChild = child; minIdx = i}
-  })
+       // console.log('about to call minmax helper')
+       let solvedChildValue = minmax(child,currDepth+1,maxDepth,(player+1)%2,alpha,beta)
+       child.value = solvedChildValue
+       console.log('child value: ' , solvedChildValue)
+      if (player === 0) {
+      //  console.log('hi from player 0')
+        if (child.value > beta) {
+          maxChild = child
+          break
+        }
+        if (child.value > alpha) alpha = child.value
+      } else if (player === 1) {
+       // console.log('hi from player 1')
+        if (child.value < alpha) {minChild = child; break}
+        if (child.value < beta) beta = child.value
+      }
 
-  console.log('about to return from minmax')
+
+
+    
+       //console.log('called minmax helper')
+   
+       if (!maxChild && !minChild) {
+           maxChild = child
+           minChild = child
+           maxIdx = i
+           minIdx = i
+       }
+       
+       else if (child.value > maxChild.value) {maxChild = child; maxIdx = i}
+       else if (child.value < minChild.value) {minChild = child; minIdx = i}
+  }
+
+  // children.forEach((child,i) => {
+  //  // console.log('about to call minmax helper')
+  //   child.value = minmax(child,currDepth+1,maxDepth,(player+1)%2).value
+    
+  //   //console.log('called minmax helper')
+
+  //   if (!maxChild && !minChild) {
+  //       maxChild = child
+  //       minChild = child
+  //       maxIdx = i
+  //       minIdx = i
+  //   }
+    
+  //   else if (child.value > maxChild.value) {maxChild = child; maxIdx = i}
+  //   else if (child.value < minChild.value) {minChild = child; minIdx = i}
+  // })
+
+ // console.log('about to return from minmax')
+
+
+if (currDepth === 0) {
   if (player === 0) return maxChild
   else return minChild
+}
+else {
+  if (player === 0) return maxChild.value
+  else return minChild.value
+  }
 }
