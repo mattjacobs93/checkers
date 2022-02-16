@@ -1,9 +1,29 @@
 
+
+html {
+  box-sizing: border-box;
+}
+
+*,*::before,*::after {
+  margin: 0;
+  box-sizing: inherit;
+}
+
 body {
+  background-color: #548c2f;
   text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-areas: 
+  "upperLeft upperCenter upperRight"
+  "midLeft midCenter midRight"
+  "lowerLeft lowerCenter lowerRight";
 }
 
 #board {
+  grid-area: midCenter;
   display: grid; 
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
@@ -38,3 +58,5 @@ div div:hover {
 .activeTile {
   border: 3px solid red;
 }
+
+
