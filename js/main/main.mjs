@@ -21,7 +21,8 @@ export {model}
 /*---------------------------- Variables (state) ----------------------------*/
 
 /*------------------------ Cached Element References ------------------------*/
-let boardDisplay = document.getElementById('board')
+let boardDisplay //= document.getElementById('board')
+let bodyElement = document.querySelector('body') 
 let activePlayer
 let players
 /*-------------------------------- Classes --------------------------------*/
@@ -51,8 +52,16 @@ function getPlayers (isAIPlayer1, isAIPlayer2) {
 }
  
 
+function initHTMLForGame () {
+  let innerDiv = document.createElement('div')
+  innerDiv.id = 'board'
+  bodyElement.innerHTML = ''
+  bodyElement.appendChild(innerDiv)
+  boardDisplay = document.getElementById('board')
+}
 
 function initGame() {
+  initHTMLForGame()
   view.setController(controller)
   view.setModel(model)
   model.setController(controller)
@@ -63,7 +72,7 @@ function initGame() {
   //console.log(tiles)
   
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
-  players = getPlayers(true,true)
+  players = getPlayers(false,true)
   activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
   console.log(activePlayer)
   controller.setActivePlayer(activePlayer)
@@ -75,15 +84,13 @@ function initGame() {
   let tiles = document.querySelectorAll("#board>div")
   view.addTiles(tiles)
   view.renderPossibleFromTiles(boardAtBeginning)
-
+  if (activePlayer.isAI()) {
+    controller.aiMove()
+  }
 }
 
 function main() {
   initGame()
-
-  if (activePlayer.isAI()) {
-    controller.aiMove()
-  }
 }
 
 main()
