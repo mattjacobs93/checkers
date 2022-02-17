@@ -79,8 +79,8 @@ div div:hover {
 .checkers-piece {
   display: grid;
   background-color: red;
-  height: 9vh;
-  width: 9vh;
+  height: 8.5vh;
+  width: 8.5vh;
   border-radius: 50%;
   border: solid 3px darkred;
   text-align: center;

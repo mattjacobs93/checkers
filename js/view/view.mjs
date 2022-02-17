@@ -292,6 +292,8 @@ createBoardAtBeginning(boardGame) {
 
   }
 
+  //this.renderBoard(boardGame)
+
 }
 
 rowAndColToID (row,col) {
@@ -310,7 +312,9 @@ renderBoard(board) {
      console.log('hi')
      newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
      console.log(newPiece)
-     if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles)
+     if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles) 
+      
+      
     }
   }
 }
