@@ -1,7 +1,9 @@
 
+/* background image from: https://www.freepik.com/free-photos-vectors/dark-green-background */
 
 html {
   box-sizing: border-box;
+  /* opacity: 30%; */
 }
 
 *,*::before,*::after {
@@ -11,6 +13,8 @@ html {
 
 body {
   background-color: #548c2f;
+  background-image: url("./../assets/pics/greenbackground2.jpg");
+  background-size: cover;
   text-align: center;
   display: grid;
   height: 100vh;
@@ -20,6 +24,12 @@ body {
   "upperLeft upperCenter upperRight"
   "midLeft midCenter midRight"
   "lowerLeft lowerCenter lowerRight";
+}
+
+#title {
+  grid-area: upperCenter;
+  color: white;
+  font-size: 6rem;
 }
 
 #board {
@@ -60,3 +70,46 @@ div div:hover {
 }
 
 
+
+.checkers-piece {
+  display: grid;
+  background-color: red;
+  height: 9vh;
+  width: 9vh;
+  border-radius: 50%;
+  border: solid 3px darkred;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-content: center;
+  color: white;
+  font-size: 35px;
+  position: absolute;
+  top: 50.5%;
+  left: 45.4%;
+  
+}
+
+.red {
+  background-color: red;
+  border: dashed 0.5rem darkred;
+  color: darkred;
+}
+
+.black {
+  background-color: rgb(40,40,40);
+  border: dashed 0.5rem black;
+  color: black
+}
+
+.non-king {
+  font-size: 20px;
+}
+
+
+/* p {
+  display: inline;
+  height: 100%;
+  width: 100%;
+  font-size: 35px;
+} */

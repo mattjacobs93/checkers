@@ -15,6 +15,7 @@ const view = new viewImport.View()
 const controller = new controllerImport.Controller()
 const player1Value = 1
 const player2Value = -1
+
 /*-------------------------------- Exports --------------------------------*/
 export {model}
 
@@ -25,6 +26,7 @@ let boardDisplay //= document.getElementById('board')
 let bodyElement = document.querySelector('body') 
 let activePlayer
 let players
+let tiles
 /*-------------------------------- Classes --------------------------------*/
 
 /*-------------------------------- Functions --------------------------------*/
@@ -81,7 +83,7 @@ function initGame() {
   let boardAtBeginning = model.getGameBoardCopy()
  //console.log(boardAtBeginning) 
   view.createBoardAtBeginning(boardAtBeginning)
-  let tiles = document.querySelectorAll("#board>div")
+  tiles = document.querySelectorAll("#board>div")
   view.addTiles(tiles)
   view.renderPossibleFromTiles(boardAtBeginning)
   if (activePlayer.isAI()) {
@@ -93,4 +95,41 @@ function main() {
   initGame()
 }
 
+
+//main()
+
+
+function testing() {
+  let title = document.createElement('p')
+  title.id = 'title'
+  title.textContent = 'Checkers'
+  bodyElement.appendChild(title)
+  let tilePiece = document.createElement('div')
+  tilePiece.classList.add('checkers-piece')
+  tilePiece.classList.add('red')
+  tilePiece.classList.add('non-king')
+  bodyElement.appendChild(tilePiece)
+  //tilePiece.innerHTML = '<p>♚</p>'
+  tilePiece.innerHTML = '⬤'
+  let boundingRect = tilePiece.getBoundingClientRect()
+  let rect = tiles[0].getBoundingClientRect()
+  
+
+
+  setInterval(()=>{
+    rect = tiles[0].getBoundingClientRect()
+    tilePiece.style.left = `${rect.left}px`;
+    tilePiece.style.top = `${rect.top}px`;
+
+  },1)
+
+  //tilePiece.style.left = `${rect.left}px`;
+//tilePiece.style.top = `${rect.top}px`;
+  console.log(boundingRect.top,boundingRect.right,boundingRect.bottom,boundingRect.left)
+  
+
+}
+
+
 main()
+testing()
