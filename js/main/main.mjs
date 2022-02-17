@@ -88,6 +88,7 @@ function initGame() {
   tiles = document.querySelectorAll("#board>div")
   tiles.forEach(tile=>tile.classList.add('tile'))
   view.addTiles(tiles)
+  view.renderBoard(boardAtBeginning)
   view.renderPossibleFromTiles(boardAtBeginning)
   if (activePlayer.isAI()) {
     controller.aiMove()

@@ -190,6 +190,8 @@ renderValidMovesToBoard (validMoves) {
 
 
 renderBoard(board) {
+
+  this.cleanBoard()
   // const setBackgroundImage = (tile,value)=> {
   //   console.log(tile,value)
   //   if (value === 1) tile.style.backgroundImage = 'url(../assets/pics/red-checker-non-king.png)' 
@@ -200,6 +202,7 @@ renderBoard(board) {
 
   // }
 
+ 
   for (let i = 0; i < NUM_ROWS; i++) {
     for (let j = 0; j < NUM_COLS; j++) {
       let tileId = (i * NUM_COLS) + j
@@ -272,8 +275,13 @@ renderActiveTile(id) {
   if (id) this.tiles[id].classList.add('activeTile')
 }
 
+toggleHover() {
+  
+}
+
 cleanBoard() {
   this.tiles.forEach(tile => {tile.classList.remove('possibleMoveFrom'); tile.classList.remove('possbileMoveTo')})
+  this.tiles.forEach(tile=>tile.classList.remove('activeTile'))
 }
 
 renderPossibleFromTiles (board) {
@@ -292,45 +300,85 @@ renderPossibleFromTiles (board) {
   }
 }
 
-createBoardAtBeginning(boardGame) {
-  let boardDiv = this.boardDiv
+// createBoardAtBeginning(boardGame) {
+//   let boardDiv = this.boardDiv
 
-  function makeTile (row, col, idx) {
+//   function makeTile (row, col, idx) {
 
-    function setTileBackground (tile) {
-      //console.log(tile.classList)
-      if (tile.classList.contains('light')) tile.style.backgroundColor = lightColorTile
-      else tile.style.backgroundColor = darkColorTile 
-    }
+//     function setTileBackground (tile) {
+//       //console.log(tile.classList)
+//       if (tile.classList.contains('light')) tile.style.backgroundColor = lightColorTile
+//       else tile.style.backgroundColor = darkColorTile 
+//     }
 
     
-    let tile = document.createElement('div')
+//     let tile = document.createElement('div')
 
-    //console.log(board)
-    tile.classList.add((((idx%2)+(row%2))%2 === 1) ? 'dark' : 'light')
-    tile.id = idx.toString()
-    tile.textContent = (boardGame[row][col] === 0 ) ? ' '
-      : (boardGame[row][col] >= 1) ? lightPiece
-      : darkPiece
-    setTileBackground(tile, idx)
-    return tile
-  }
+//     //console.log(board)
+//     tile.classList.add((((idx%2)+(row%2))%2 === 1) ? 'dark' : 'light')
+//     tile.id = idx.toString()
+//     tile.textContent = (boardGame[row][col] === 0 ) ? ' '
+//       : (boardGame[row][col] >= 1) ? lightPiece
+//       : darkPiece
+//     setTileBackground(tile, idx)
+//     return tile
+//   }
   
 
 
   
-  for (let row = 0; row < NUM_ROWS; row++) {
-    for (let col = 0; col < NUM_COLS; col++) {
-      let idx = (row * NUM_COLS) + col
-      let tile = makeTile(row,col,idx)
-      boardDiv.appendChild(tile)
+//   for (let row = 0; row < NUM_ROWS; row++) {
+//     for (let col = 0; col < NUM_COLS; col++) {
+//       let idx = (row * NUM_COLS) + col
+//       let tile = makeTile(row,col,idx)
+//       boardDiv.appendChild(tile)
+//     }
+
+//   }
+
+//   //this.renderBoard(boardGame)
+
+// }
+
+createBoardAtBeginning(boardGame) {
+    let boardDiv = this.boardDiv
+  
+    function makeTile (row, col, idx) {
+  
+      function setTileBackground (tile) {
+        //console.log(tile.classList)
+        if (tile.classList.contains('light')) tile.style.backgroundColor = lightColorTile
+        else tile.style.backgroundColor = darkColorTile 
+      }
+  
+      
+      let tile = document.createElement('div')
+  
+      //console.log(board)
+      tile.classList.add((((idx%2)+(row%2))%2 === 1) ? 'empty-dark' : 'empty-light')
+      tile.id = idx.toString()
+      // tile.textContent = (boardGame[row][col] === 0 ) ? ' '
+      //   : (boardGame[row][col] >= 1) ? lightPiece
+      //   : darkPiece
+      // setTileBackground(tile, idx)
+      return tile
     }
-
+    
+  
+  
+    
+    for (let row = 0; row < NUM_ROWS; row++) {
+      for (let col = 0; col < NUM_COLS; col++) {
+        let idx = (row * NUM_COLS) + col
+        let tile = makeTile(row,col,idx)
+        boardDiv.appendChild(tile)
+      }
+  
+    }
+  
+   // console.log(this.renderBoard(boardGame))
+  
   }
-
-  //this.renderBoard(boardGame)
-
-}
 
 rowAndColToID (row,col) {
   return (row * NUM_COLS) + col

@@ -82,6 +82,7 @@ aiMove () {
   (() => {
     this.#view.renderValidMovesToBoard([])
     this.#view.cleanBoard()
+    this.#view.toggleHover()
   })() 
   
   let boardCopy = this.#model.getGameBoardCopy()
@@ -101,6 +102,8 @@ aiMove () {
  let to = chosenMoveObj.movesArray[chosenMoveObj.movesArray.length - 1]
  let toID = this.locationToID(to)
 
+
+ this.#view.toggleHover()
  this.processClick(fromID,from)
  this.processClick(toID, to)
 }
@@ -177,9 +180,6 @@ processClick(id,location) {
   else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0 ) {
     //console.log('valid destination')
 
-    
-    
-    
     try {
       let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === location[0] && el.movesArray[el.movesArray.length-1][1] === location[1])[0]
 
@@ -188,17 +188,8 @@ processClick(id,location) {
   
       if (this.#activePlayer.tileBelongsToPlayer(valueAtBeginningOfMove))
       {
-        this.#to = location
-        //console.log('applying move and changing player')
-        //console.log(chosenMove)
-        //console.log('my chosen move', chosenMove)
-        //console.log('chosen move value',chosenMove.board[3][4])
-
+        this.#to = location        
         this.moveChosen(chosenMove)
-        // this.#model.setBoard(chosenMove.board)
-        // this.#view.renderMove(chosenMove)
-        // this.#validMoves = []
-        // this.switchPlayer()
       } 
       
      else {
