@@ -107,28 +107,28 @@ function testing() {
   title.id = 'title'
   title.textContent = 'Checkers'
   bodyElement.appendChild(title)
-  let tilePiece = document.createElement('div')
-  tilePiece.classList.add('checkers-piece')
-  tilePiece.classList.add('red')
-  tilePiece.classList.add('non-king')
-  bodyElement.appendChild(tilePiece)
-  //tilePiece.innerHTML = '<p>♚</p>'
-  tilePiece.innerHTML = '⬤'
-  let boundingRect = tilePiece.getBoundingClientRect()
-  let rect = tiles[0].getBoundingClientRect()
+//   let tilePiece = document.createElement('div')
+//   tilePiece.classList.add('checkers-piece')
+//   tilePiece.classList.add('red')
+//   tilePiece.classList.add('non-king')
+//   bodyElement.appendChild(tilePiece)
+//   //tilePiece.innerHTML = '<p>♚</p>'
+//   tilePiece.innerHTML = '⬤'
+//   let boundingRect = tilePiece.getBoundingClientRect()
+//   let rect = tiles[0].getBoundingClientRect()
   
 
 
-  setInterval(()=>{
-    rect = tiles[0].getBoundingClientRect()
-    tilePiece.style.left = `${rect.left}px`;
-    tilePiece.style.top = `${rect.top}px`;
+//   setInterval(()=>{
+//     rect = tiles[0].getBoundingClientRect()
+//     tilePiece.style.left = `${rect.left}px`;
+//     tilePiece.style.top = `${rect.top}px`;
 
-  },1)
+//   },1)
 
-  //tilePiece.style.left = `${rect.left}px`;
-//tilePiece.style.top = `${rect.top}px`;
-  console.log(boundingRect.top,boundingRect.right,boundingRect.bottom,boundingRect.left)
+//   //tilePiece.style.left = `${rect.left}px`;
+// //tilePiece.style.top = `${rect.top}px`;
+//   console.log(boundingRect.top,boundingRect.right,boundingRect.bottom,boundingRect.left)
   
 
 }
