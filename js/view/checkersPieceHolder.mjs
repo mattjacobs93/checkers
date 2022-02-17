@@ -31,8 +31,10 @@ class CheckersPieceHolder {
     let currTile = tiles[id]
     //console.log('current tile',currTile)
     let rect = currTile.getBoundingClientRect()
-    newPiece.pieceDiv.style.left = `${rect.left}px`
-    newPiece.pieceDiv.style.top = `${rect.top}px`
+    
+    newPiece.pieceDiv.style.left = `${rect.left + 2.5}px`
+    newPiece.pieceDiv.style.top = `${rect.top + 2.5}px`
+    newPiece.pieceDiv.textContent = ''//'♚'
     newPiece.setCurrTile(currTile)
 
     //console.log('hi',rect)

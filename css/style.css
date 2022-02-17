@@ -12,11 +12,13 @@ html {
 }
 
 body {
+  display: grid;
   background-color: #548c2f;
   background-image: url("./../assets/pics/greenbackground2.jpg");
   background-size: cover;
+  justify-content: center;
   text-align: center;
-  display: grid;
+  
   height: 100vh;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: 1fr 4fr 1fr;
@@ -30,9 +32,11 @@ body {
   grid-area: upperCenter;
   color: white;
   font-size: 6rem;
+  text-align: center;
 }
 
 #board {
+  margin: 0 auto;
   grid-area: midCenter;
   display: grid; 
   grid-template-columns: repeat(8, 1fr);
@@ -66,7 +70,7 @@ div div:hover {
 }
 
 .activeTile {
-  border: 3px solid red;
+  border: 3px solid red; 
 }
 
 
@@ -95,16 +99,16 @@ div div:hover {
   
 }
 
-.red {
+/* .red {
   background-color: red;
   border: dashed 0.5rem darkred;
-  color: darkred;
+  color: white;
 }
 
 .black {
   background-color: rgb(40,40,40);
   border: dashed 0.5rem black;
-  color: black
+  color: white;
 }
 
 .non-king {
@@ -113,7 +117,7 @@ div div:hover {
 
 .king {
 
-}
+} */
 
 
 /* p {
@@ -122,3 +126,30 @@ div div:hover {
   width: 100%;
   font-size: 35px;
 } */
+
+.red-checker-non-king {
+  background-image: url('../assets/pics/red-checker-non-king.png');
+  background-size: cover;
+}
+
+.red-checker-king {
+  background-image: url('../assets/pics/red-checker-king.png');
+  background-size: cover;
+}
+.black-checker-non-king {
+  background-image: url('../assets/pics/black-checker-non-king.png');
+  background-size: cover;
+}
+.black-checker-king {
+  background-image: url('../assets/pics/black-checker-king.png');
+  background-size: cover;
+}
+
+.empty-light {
+  background-color: #C4A484;
+
+}
+
+.empty-dark {
+  background-color: #a0522d;
+}

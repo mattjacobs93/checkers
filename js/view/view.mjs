@@ -48,6 +48,13 @@ const pieceMap = {
   '-2': darkPieceKing,
 }
 
+const classMap = {
+  '2': 'red-checker-king',
+  '1': 'red-checker-non-king',
+  '0': 'empty-dark',
+ '-1': 'black-checker-non-king',
+ '-2': 'black-checker-king',
+}
 
 class View {
   #controller
@@ -182,6 +189,35 @@ renderValidMovesToBoard (validMoves) {
 // }
 
 
+renderBoard(board) {
+  // const setBackgroundImage = (tile,value)=> {
+  //   console.log(tile,value)
+  //   if (value === 1) tile.style.backgroundImage = 'url(../assets/pics/red-checker-non-king.png)' 
+  //   if (value === 2) tile.style.backgroundImage = 'url(../assets/pics/red-checker-king.png)'  
+  //   if (value === -1) tile.style.backgroundImage = 'url(../assets/pics/black-checker-non-king.png)' 
+  //   if (value === -2) tile.style.backgroundImage = 'url(../assets/pics/black-checker-king.png)' 
+  //    tile.style.backgroundSize = 'cover'
+
+  // }
+
+  for (let i = 0; i < NUM_ROWS; i++) {
+    for (let j = 0; j < NUM_COLS; j++) {
+      let tileId = (i * NUM_COLS) + j
+      let currTile = this.tiles[tileId]
+      if (currTile.classList.contains('empty-light')) continue
+
+      let currBoardValue = board[i][j]
+      currTile.removeAttribute('class')
+      currTile.setAttribute('class',classMap[currBoardValue.toString()])
+     // console.log(tileId, this.tiles[0])
+      //this.tiles[tileId].style.backgroundImage = 'url(../assets/pics/red-checker-king.png)'//.textContent = pieceMap[currBoardValue.toString()]
+      //console.log(currBoardValue)
+     // if (currBoardValue !== 0) setBackgroundImage(this.tiles[tileId],currBoardValue)
+     
+    }
+  }
+}
+
 // makeNewPiece (currVal, tileId) {
 //     let newPiece = document.createElement('div')
 //     newPiece.style.gridArea(id.toString())
@@ -300,23 +336,23 @@ rowAndColToID (row,col) {
   return (row * NUM_COLS) + col
 }
 
-renderBoard(board) {
+// renderBoard(board) {
 
-  this.checkersPieceHolder.emptyCheckersPiecesList()
-  for (let row = 0; row < NUM_ROWS; row++) {
-    for (let col = 0; col < NUM_COLS; col++) {
-     // console.log(board[row][col])
-     let currVal = board[row][col]
-     if (!currVal) continue
-     let newPiece
-     console.log('hi')
-     newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
-     console.log(newPiece)
-     if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles) 
+//   this.checkersPieceHolder.emptyCheckersPiecesList()
+//   for (let row = 0; row < NUM_ROWS; row++) {
+//     for (let col = 0; col < NUM_COLS; col++) {
+//      // console.log(board[row][col])
+//      let currVal = board[row][col]
+//      if (!currVal) continue
+//      let newPiece
+//      console.log('hi')
+//      newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
+//      console.log(newPiece)
+//      if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles) 
       
       
-    }
-  }
-}
+//     }
+//   }
+// }
 
 }
