@@ -6,7 +6,7 @@ import * as PlayerImport from "../model/player.mjs"
 import * as ModelImport from '../model/model.mjs'
 import * as validatorImport from "../controller/validator.mjs"
 import * as controllerImport from "../controller/controller.mjs"
-
+// import * as checkersPieceImport from "../view/checkersPiece.mjs"
 
 /*-------------------------------- Constants --------------------------------*/
 
@@ -82,6 +82,8 @@ function initGame() {
 
   let boardAtBeginning = model.getGameBoardCopy()
  //console.log(boardAtBeginning) 
+ view.setBodyElement(bodyElement)
+ view.setCheckersPieceHolder()
   view.createBoardAtBeginning(boardAtBeginning)
   tiles = document.querySelectorAll("#board>div")
   view.addTiles(tiles)

@@ -2,6 +2,8 @@
 /*-------------------------------- Imports --------------------------------*/
 import {getValidMoves} from "../controller/validator.mjs"
 import {Model,NUM_ROWS,NUM_COLS,NUM_TILES} from "../model/model.mjs"
+import {CheckersPiece} from "../view/checkersPiece.mjs"
+import { CheckersPieceHolder } from "./checkersPieceHolder.mjs"
 /*-------------------------------- Export(s) --------------------------------*/
 export {View}
 
@@ -43,11 +45,13 @@ const pieceMap = {
 class View {
   #controller
   #model
+  bodyElement
   tiles
   moveFrom
   moveTo
   activePlayer
   boardDiv
+  checkersPieceHolder
 
   constructor () {
 
@@ -85,6 +89,20 @@ class View {
 
   setModel (model) {
     this.#model = model
+  }
+
+  setBodyElement(body) {
+    this.bodyElement = body
+  }
+  
+  
+  
+  setBoardDiv(boardDiv) {
+    this.boardDiv = boardDiv
+  }
+
+  setCheckersPieceHolder() {
+    this.checkersPieceHolder = new CheckersPieceHolder(this.bodyElement)
   }
 
 renderMove(moveObject) {
@@ -143,20 +161,18 @@ renderValidMovesToBoard (validMoves) {
   validMoves.forEach(move=>{addMoveToBoard(move.movesArray[move.movesArray.length-1],this.tiles)})
 }
 
-setBoardDiv(boardDiv) {
-  this.boardDiv = boardDiv
-}
 
-renderBoard(board) {
-  for (let i = 0; i < NUM_ROWS; i++) {
-    for (let j = 0; j < NUM_COLS; j++) {
-      let tileId = (i * NUM_COLS) + j
-      let currBoardValue = board[i][j]
-     // console.log(tileId, this.tiles[0])
-      this.tiles[tileId].textContent = pieceMap[currBoardValue.toString()]
-    }
-  }
-}
+
+// renderBoard(board) {
+//   for (let i = 0; i < NUM_ROWS; i++) {
+//     for (let j = 0; j < NUM_COLS; j++) {
+//       let tileId = (i * NUM_COLS) + j
+//       let currBoardValue = board[i][j]
+//      // console.log(tileId, this.tiles[0])
+//       this.tiles[tileId].textContent = pieceMap[currBoardValue.toString()]
+//     }
+//   }
+// }
 
 renderActiveTile(id) {
   this.tiles.forEach(tile => tile.classList.remove('activeTile'))
@@ -219,6 +235,26 @@ createBoardAtBeginning(boardGame) {
 
   }
 
+}
+
+rowAndColToID (row,col) {
+  return (row * NUM_COLS) + col
+}
+
+renderBoard(board) {
+
+  for (let row = 0; row < NUM_ROWS; row++) {
+    for (let col = 0; col < NUM_COLS; col++) {
+     // console.log(board[row][col])
+     let currVal = board[row][col]
+     let newPiece
+     if (currVal !== 0) {
+       newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
+     }
+
+     if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles)
+    }
+  }
 }
 
 }
