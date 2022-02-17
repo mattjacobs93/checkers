@@ -18,11 +18,18 @@ export {View}
 
 let lightColorTile = '#C4A484'
 let darkColorTile = '#a0522d'
-let lightPiece = 'X'
-let lightPieceKing = 'KX'
-let darkPiece = 'O'
-let darkPieceKing = 'KO'
+// let lightPiece = 'X'
+// let lightPieceKing = 'KX'
+// let darkPiece = 'O'
+// let darkPieceKing = 'KO'
+// let emptyPiece = ''
+let lightPiece = ''
+let lightPieceKing = ''
+let darkPiece = ''
+let darkPieceKing = ''
 let emptyPiece = ''
+
+
 /*------------------------ Cached Element References ------------------------*/
 const boardDisplay = document.getElementById('board')
 
@@ -174,6 +181,56 @@ renderValidMovesToBoard (validMoves) {
 //   }
 // }
 
+
+// makeNewPiece (currVal, tileId) {
+//     let newPiece = document.createElement('div')
+//     newPiece.style.gridArea(id.toString())
+//     let classes = []
+//     if (currVal < 0) classes.push('black')
+//     else classes.push('red')
+
+//     if (Math.abs(currVal) === 2) classes.push('king')
+//     else classes.push('non-king')
+//     classes.push('checkers-piece')
+
+//     classes.forEach(classToAdd=>newPiece.classList.add(classToAdd))
+//     //.bodyElement.appendChild(newPiece.pieceDiv)
+//     //this.checkersPieces.push(newPiece)
+//     return newPiece
+// }
+
+removeChildElements (tile) {
+  while (tile.lastchild) {
+    tile.removeLastChild()
+  }
+  // tile.innerHTML = ""
+}
+
+
+// renderBoard(board) {
+
+
+
+//   for (let i = 0; i < NUM_ROWS; i++) {
+//     for (let j = 0; j < NUM_COLS; j++) {
+      
+//       let tileId = (i * NUM_COLS) + j
+//       //console.log('id', tileId)
+//       let currBoardValue = board[i][j]
+//       //console.log('currVal', currBoardValue)
+//      // console.log(tileId, this.tiles[0])
+//       //this.tiles[tileId].textContent = pieceMap[currBoardValue.toString()]
+//       let currTile = this.tiles[tileId]
+//       this.removeChildElements(currTile)
+//       console.log('hi')
+//       //removeChildElements()
+//      if (currBoardValue !== 0) currTile.appendChild(this.makeNewPiece(currBoardValue,tileId))
+
+//     }
+//   }
+// }
+
+
 renderActiveTile(id) {
   this.tiles.forEach(tile => tile.classList.remove('activeTile'))
   if (id) this.tiles[id].classList.add('activeTile')
@@ -243,15 +300,16 @@ rowAndColToID (row,col) {
 
 renderBoard(board) {
 
+  this.checkersPieceHolder.emptyCheckersPiecesList()
   for (let row = 0; row < NUM_ROWS; row++) {
     for (let col = 0; col < NUM_COLS; col++) {
      // console.log(board[row][col])
      let currVal = board[row][col]
+     if (!currVal) continue
      let newPiece
-     if (currVal !== 0) {
-       newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
-     }
-
+     console.log('hi')
+     newPiece = this.checkersPieceHolder.makeNewPiece(currVal)
+     console.log(newPiece)
      if (newPiece) this.checkersPieceHolder.setPiecePosition(newPiece,this.rowAndColToID(row,col),this.tiles)
     }
   }

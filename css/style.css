@@ -70,6 +70,11 @@ div div:hover {
 }
 
 
+.tile {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 
 .checkers-piece {
   display: grid;
@@ -107,7 +112,7 @@ div div:hover {
 }
 
 .king {
-  
+
 }
 
 

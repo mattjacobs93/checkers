@@ -4,9 +4,14 @@ export {CheckersPiece}
 
 
 class CheckersPiece {
-  position
-  constructor() {
-    this.position = 0
+  pieceDiv
+  currTile
+  constructor(pieceDiv) {
+    this.pieceDiv = pieceDiv
+  }
+
+  setCurrTile(currTile) {
+    this.currTile = currTile
   }
 
 

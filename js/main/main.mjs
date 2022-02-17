@@ -86,6 +86,7 @@ function initGame() {
  view.setCheckersPieceHolder()
   view.createBoardAtBeginning(boardAtBeginning)
   tiles = document.querySelectorAll("#board>div")
+  tiles.forEach(tile=>tile.classList.add('tile'))
   view.addTiles(tiles)
   view.renderPossibleFromTiles(boardAtBeginning)
   if (activePlayer.isAI()) {
