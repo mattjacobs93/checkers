@@ -3,7 +3,7 @@
 
 
 ## Deployment Link: 
-### https://mattjacobs93.github.io/checkers/
+### checkersbymattjacobs.surge.sh
 
 ## Screenshot
 
