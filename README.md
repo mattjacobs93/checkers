@@ -6,8 +6,7 @@
 
 
 # Getting Started:
-## Deployment Link: 
-### www.checkersbymattjacobs.surge.sh
+### Deployment Link: www.checkersbymattjacobs.surge.sh
 
 # Screenshots:
 ### Opening Menu:
