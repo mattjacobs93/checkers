@@ -56,7 +56,7 @@ body {
   border: 3px solid blue;
 }
 
-.activeTile {
+.active-tile {
   border: 3px solid red; 
 }
 

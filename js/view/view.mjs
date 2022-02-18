@@ -97,10 +97,10 @@ renderValidMovesToBoard (validMoves) {
     let row = move[0]
     let col = move[1]
     let id = (NUM_COLS * row) + col
-    tiles[id].classList.add('possibleMoveTo')
+    tiles[id].classList.add('possible-move-to')
   }
  
-  this.tiles.forEach(tiles=>tiles.classList.remove('possibleMoveTo'))
+  this.tiles.forEach(tiles=>tiles.classList.remove('possible-move-to'))
   validMoves.forEach(move=>{addMoveToBoard(move.movesArray[move.movesArray.length-1],this.tiles)})
 }
 
@@ -128,8 +128,8 @@ removeChildElements (tile) {
 }
 
 renderActiveTile(id) {
-  this.tiles.forEach(tile => tile.classList.remove('activeTile'))
-  if (id) this.tiles[id].classList.add('activeTile')
+  this.tiles.forEach(tile => tile.classList.remove('active-tile'))
+  if (id) this.tiles[id].classList.add('active-tile')
 }
 
 toggleHover () {
@@ -164,17 +164,17 @@ turnOn () {
   this.renderPossibleFromTiles(this.#controller.getBoardCopy())
 }
 cleanBoard() {
-  this.tiles.forEach(tile => {tile.classList.remove('possibleMoveFrom'); tile.classList.remove('possbileMoveTo')})
-  this.tiles.forEach(tile=>tile.classList.remove('activeTile'))
+  this.tiles.forEach(tile => {tile.classList.remove('possible-move-from'); tile.classList.remove('possbile-move-to')})
+  this.tiles.forEach(tile=>tile.classList.remove('active-tile'))
 }
 
 renderPossibleFromTiles (board) {
   let possibleMovesBoard = this.#controller.getLocationsOfPossibleMovesFrom(board)
   for (let row = 0; row < NUM_ROWS; row++) {
     for (let col = 0; col < NUM_COLS; col++) {
-      this.tiles[(row * NUM_COLS) + col].classList.remove('possibleMoveFrom')
+      this.tiles[(row * NUM_COLS) + col].classList.remove('possible-move-from')
         if (possibleMovesBoard[row][col] === 1) {
-          this.tiles[(row * NUM_COLS) + col].classList.add('possibleMoveFrom')
+          this.tiles[(row * NUM_COLS) + col].classList.add('possible-move-from')
         }
     }
   }
