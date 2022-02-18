@@ -7,10 +7,20 @@
 ## Deployment Link: 
 ### www.checkersbymattjacobs.surge.sh
 ---
-## Screenshot
+## Screenshots:
+### Opening Menu:
 ![Imgur](https://i.imgur.com/qc51JBQ.png)
+### Mid-game:
+![Imgur](https://i.imgur.com/8CSLOFV.png)
+### Post-game:
+![Imgur](https://i.imgur.com/3eBfTbi.png)
+
 ---
 ## Technologies used: HTML, CSS, Javascript
 ---
 ## Next steps:
-### light and dark mode
+### -make the game mobile friendly
+### -update renderMove() to render each "hop" separately if move consists of multiple "hops"
+### -light and dark mode
+### -fix "kinks" such as king tiles not loading right away when AI vs AI
+### -add audio
