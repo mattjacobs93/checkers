@@ -22,7 +22,6 @@ function evalBoard (board, gameResult) {
       else if (currValue < 0) {scorePlayer2 += (Math.abs(currValue) + getValidMoves([row,col],getDeepCopy(board)).length)}
     }
   }
-
-
+  
 return scorePlayer1 - scorePlayer2
 }
