@@ -8,7 +8,7 @@
 ### www.checkersbymattjacobs.surge.sh
 ---
 ## Screenshot
-[Imgur](https://i.imgur.com/qc51JBQ.png)
+![Imgur](https://i.imgur.com/qc51JBQ.png)
 ---
 ## Technologies used: HTML, CSS, Javascript
 ---
