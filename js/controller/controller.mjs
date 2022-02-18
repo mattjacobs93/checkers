@@ -9,15 +9,15 @@ export {Controller}
 
 
 class Controller {
-#model
-#view
-#from
-#to
-#activePlayer
-#validMovesDestinations
-#validMoves
-#alpha
-#beta
+  #model
+  #view
+  #from
+  #to
+  #activePlayer
+  #validMovesDestinations
+  #validMoves
+  #alpha
+  #beta
 
   constructor () {
     this.#alpha = -1 * Infinity
@@ -55,8 +55,8 @@ class Controller {
   ]
 
 
-    for (let i = 0; i < NUM_ROWS; i++) {
-      for (let j = 0; j < NUM_COLS; j++) {
+  for (let i = 0; i < NUM_ROWS; i++) {
+    for (let j = 0; j < NUM_COLS; j++) {
 
       let currTileBelongsToActivePlayer = this.#activePlayer.tileBelongsToPlayer(board[i][j])
       let boardCopy = board.slice().map(el=>el.slice())
@@ -64,21 +64,17 @@ class Controller {
        if (currTileBelongsToActivePlayer && hasPossibleMoves) {
           possibleMovesBoard[i][j] = 1
         }
-
       }
-
-
     }
-
   return possibleMovesBoard
 }
 
-  locationToID(location) {
+locationToID(location) {
     return (location[0]*NUM_COLS) + location[1]
   }
 
 
-  aiMove () {
+aiMove () {
 
     (() => {
       this.#view.renderValidMovesToBoard([])
@@ -103,7 +99,7 @@ class Controller {
     this.processClick(toID, to)
   }
 
-  switchPlayer() {
+switchPlayer() {
     this.#activePlayer.toggleActivePlayer()
     let board = this.#model.getGameBoardCopy()
     this.#view.renderActiveTile(null)
@@ -114,10 +110,10 @@ class Controller {
         this.aiMove()
       } 
     },10)
-  }
+}
 
 
-  moveChosen (chosenMove) {
+ moveChosen (chosenMove) {
     let boardCopy = getDeepCopy(chosenMove.board)
     this.#model.setBoard(chosenMove.board)
     this.#view.renderMove(chosenMove)
@@ -130,34 +126,26 @@ class Controller {
     }
   }
 
-  processClick(id,location) {
-
-    (() => {
-      this.#view.renderValidMovesToBoard([])
-      this.#view.cleanBoard()
-    })() 
-
-    let board = this.getBoardCopy()
-
-    let locationValue
-    try {
-      locationValue = board[location[0]][location[1]]
-    } catch {
-      return
+processClick(id,location) {
+  (() => {
+    this.#view.renderValidMovesToBoard([])
+    this.#view.cleanBoard()
+  })() 
+  let board = this.getBoardCopy()
+  let locationValue
+  try {
+    locationValue = board[location[0]][location[1]]
+  } catch {
+    return
+  }
+  if (this.#activePlayer.tileBelongsToPlayer(locationValue)) {
+    this.#from = location
+    this.#validMoves = getValidMoves(location,board)
+    this.#validMovesDestinations = this.#validMoves.map(el=>el.movesArray[el.movesArray.length-1])
+    this.#view.renderValidMovesToBoard(this.#validMoves)
+    this.#view.renderActiveTile(id)
     }
-
-
-    if (this.#activePlayer.tileBelongsToPlayer(locationValue)) {
-      this.#from = location
-      this.#validMoves = getValidMoves(location,board)
-      this.#validMovesDestinations = this.#validMoves.map(el=>el.movesArray[el.movesArray.length-1])
-      this.#view.renderValidMovesToBoard(this.#validMoves)
-      this.#view.renderActiveTile(id)
-    }
-
-    else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0 ) {
-    
-
+  else if (this.#validMovesDestinations.filter(el=>el[0]===location[0] && el[1]===location[1]).length > 0 ) {
       try {
         let chosenMove = this.#validMoves.filter(el=>el.movesArray[el.movesArray.length-1][0] === location[0] && el.movesArray[el.movesArray.length-1][1] === location[1])[0]
 
@@ -183,9 +171,9 @@ class Controller {
 
     }
 
-    else {
-      this.#view.renderActiveTile(null)
-      this.#view.renderPossibleFromTiles(board)
+  else {
+    this.#view.renderActiveTile(null)
+    this.#view.renderPossibleFromTiles(board)
     }
   }
 }
