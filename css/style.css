@@ -160,4 +160,92 @@ body {
   z-index: 1;
   margin: 0 auto;
   border-radius: 15%;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: 8vh 1fr 8vh 1fr 8vh 1fr 8vh;
+  grid-template-areas: 
+  "menu menu menu menu menu"
+  "space1 space1 space1 space1 space1"
+  "choosePlayer1 humanP1 AIEasyP1 AIMediumP1 AIHardP1"
+  "space2 space2 space2 space2 space2"
+  "choosePlayer2 humanP2 AIEasyP2 AIMediumP2 AIHardP2"
+  "space3 space3 space3 space3 space3"
+  "start start start start start";
+}
+
+.menu-sign {
+  color: white;
+  grid-area: menu;
+  /* font-size: 2rem; */
+  text-decoration: underline white;
+  white-space: nowrap;
+}
+
+.choose-player-1 {
+  grid-area: choosePlayer1;
+  color: white;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  align-self: center;
+}
+
+.choose-player-2 {
+  grid-area: choosePlayer2;
+  color: white;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  align-self: center;
+}
+
+
+.difficulty-level {
+  /* white-space: nowrap; */
+  font-size: .5rem;
+  margin: 0 .05vw;
+  width: 11vh;
+  border-radius: 7%;
+}
+
+#humanButton1 {
+  grid-area: humanP1;
+  
+}
+
+#aiEasyButton1 {
+  grid-area: AIEasyP1; 
+}
+
+#aiMediumButton1 {
+  grid-area: AIMediumP1;
+}
+
+#aiHardButton1 {
+  grid-area: AIHardP1;
+}
+
+#humanButton2 {
+  grid-area: humanP2;
+  
+}
+
+#aiEasyButton2 {
+  grid-area: AIEasyP2; 
+}
+
+#aiMediumButton2 {
+  grid-area: AIMediumP2;
+}
+
+#aiHardButton2 {
+  grid-area: AIHardP2;
+}
+
+#startButton {
+  grid-area: start;
+  width: 10vh;
+  justify-self: center;
+}
+
+.active-button {
+  border: 3px solid red;
 }
