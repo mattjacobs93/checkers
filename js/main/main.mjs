@@ -4,9 +4,8 @@
 import * as viewImport from "../view/view.mjs";
 import * as PlayerImport from "../model/player.mjs"
 import * as ModelImport from '../model/model.mjs'
-//import * as validatorImport from "../controller/validator.mjs"
 import * as controllerImport from "../controller/controller.mjs"
-// import * as checkersPieceImport from "../view/checkersPiece.mjs"
+
 
 /*-------------------------------- Constants --------------------------------*/
 
@@ -20,14 +19,13 @@ const player2Value = -1
 export {model}
 
 /*---------------------------- Variables (state) ----------------------------*/
-
-/*------------------------ Cached Element References ------------------------*/
-let boardDisplay //= document.getElementById('board')
-let bodyElement = document.querySelector('body') 
+let boardDisplay 
 let activePlayer
 let players
 let tiles
-/*-------------------------------- Classes --------------------------------*/
+/*------------------------ Cached Element References ------------------------*/
+
+let bodyElement = document.querySelector('body') 
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -48,7 +46,7 @@ function getPlayers (isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) {
   let player1  = new PlayerImport.Player(player1Value,isAIPlayer1,depth1)
   let player2 = new PlayerImport.Player(player2Value, isAIPlayer2,depth2)
   let players = setUpPlayers(player1,player2)
- // console.log(players)
+
 
   return players
 }
@@ -70,21 +68,13 @@ function initGame() {
   model.setController(controller)
   controller.setModel(model)
   controller.setView(view)
-
-  
-  //console.log(tiles)
-  
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
   players = getPlayers(false,true)
-  //activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
   activePlayer = new PlayerImport.ActivePlayer()
   activePlayer.setPlayers(players[0],players[1])
- // console.log(activePlayer)
   controller.setActivePlayer(activePlayer)
   view.setBoardDiv(boardDisplay)
-
-  let boardAtBeginning = model.getGameBoardCopy()
- //console.log(boardAtBeginning) 
+  let boardAtBeginning = model.getGameBoardCopy() 
  view.setBodyElement(bodyElement)
  view.setCheckersPieceHolder()
   view.createBoardAtBeginning(boardAtBeginning)
@@ -99,40 +89,11 @@ function initGame() {
 }
 
 
-//main()
-
-
 function startGame() {
   let title = document.createElement('p')
   title.id = 'title'
   title.textContent = 'Checkers'
   bodyElement.appendChild(title)
-
- // view.turnOn()
-//   let tilePiece = document.createElement('div')
-//   tilePiece.classList.add('checkers-piece')
-//   tilePiece.classList.add('red')
-//   tilePiece.classList.add('non-king')
-//   bodyElement.appendChild(tilePiece)
-//   //tilePiece.innerHTML = '<p>♚</p>'
-//   tilePiece.innerHTML = '⬤'
-//   let boundingRect = tilePiece.getBoundingClientRect()
-//   let rect = tiles[0].getBoundingClientRect()
-  
-
-
-//   setInterval(()=>{
-//     rect = tiles[0].getBoundingClientRect()
-//     tilePiece.style.left = `${rect.left}px`;
-//     tilePiece.style.top = `${rect.top}px`;
-
-//   },1)
-
-//   //tilePiece.style.left = `${rect.left}px`;
-// //tilePiece.style.top = `${rect.top}px`;
-//   console.log(boundingRect.top,boundingRect.right,boundingRect.bottom,boundingRect.left)
-  
-
 }
 
 
@@ -141,18 +102,14 @@ function displayMenu () {
   
   
   view.turnOff()
-  //view.displayIntroMessage()
   let menu = document.createElement('div')
   menu.classList.add('menu')
   menu.textContent = " "
   bodyElement.append(menu)
-  let rectBoard = boardDisplay.getBoundingClientRect()
-  //let menuWidth = parseInt(0.8 * (rectBoard.left - rectBoard.right))
   menu.style.width = '67.5vh'
   menu.style.height = '42vh'
   menu.style.position = 'relative'
   menu.style.top = '16.5vh'
-  //console.log('hi',rectBoard)
   let menuSign = document.createElement('p')
   menuSign.textContent = 'Starting Menu'
   menuSign.classList.add('menu-sign')
@@ -288,11 +245,9 @@ function displayMenu () {
     let depth2 = (player2 === 'aiEasyButton2') ? 1
                   : (player2 === 'aiMediumButton2') ? 3
                   : 5
-    //(isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) 
-    //console.log(player1, player2)
+  
     players = getPlayers(isPlayer1AI,isPlayer2AI,depth1,depth2)
-    //console.log(player1.id,player2.id)
-    //console.log(isPlayer1AI,isPlayer2AI,depth1,depth2)
+
     activePlayer.setPlayers(players[0],players[1])
 
     if (isPlayer1AI) setTimeout(controller.aiMove(),10)
