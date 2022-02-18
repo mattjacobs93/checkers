@@ -25,3 +25,6 @@
 ### -light and dark mode
 ### -fix "kinks" such as king tiles not loading right away when AI vs AI
 ### -add audio
+
+# Credits
+### Background Image: https://www.freepik.com/free-photos-vectors/dark-green-background
