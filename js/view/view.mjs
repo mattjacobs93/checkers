@@ -9,8 +9,8 @@ export {View}
 let lightColorTile = '#C4A484'
 let darkColorTile = '#a0522d'
 
-
 /*------------------------ Cached Element References ------------------------*/
+
 const boardDisplay = document.getElementById('board')
 
 const classMap = {
@@ -192,10 +192,7 @@ createBoardAtBeginning(boardGame) {
       tile.id = idx.toString()
       return tile
     }
-    
-  
-  
-    
+      
     for (let row = 0; row < NUM_ROWS; row++) {
       for (let col = 0; col < NUM_COLS; col++) {
         let idx = (row * NUM_COLS) + col
