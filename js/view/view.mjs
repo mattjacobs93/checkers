@@ -37,7 +37,6 @@ class View {
 
   constructor () {
     this.isOn = true
-
   }
 
   setActivePlayer(player) {
@@ -61,16 +60,12 @@ class View {
     this.bodyElement = body
   }
   
-  
-  
   setBoardDiv(boardDiv) {
     this.boardDiv = boardDiv
   }
 
 renderMove(moveObject) {
-  
   this.renderBoard(moveObject.board)
-
 }
  
 acceptBoardClick (evt) {
@@ -81,7 +76,6 @@ acceptBoardClick (evt) {
     let location = [row,col]
     this.#controller.processClick(id, location)
   }
-  
 }
 
 renderGameOver(outcome) {
@@ -133,13 +127,18 @@ removeChildElements (tile) {
   }
 }
 
-
 renderActiveTile(id) {
   this.tiles.forEach(tile => tile.classList.remove('activeTile'))
   if (id) this.tiles[id].classList.add('activeTile')
 }
 
-toggleHover () {}
+toggleHover () {
+  if (this.boardDiv.classList.contains('hoverable')) {
+    this.boardDiv.classList.remove('hoverable')
+  } else {
+    this.boardDiv.classList.add('hoverable')
+  }
+}
 
 turnHoverOn () {
   this.boardDiv.classList.remove('hoverable')
