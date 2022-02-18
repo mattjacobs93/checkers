@@ -29,12 +29,6 @@ let bodyElement = document.querySelector('body')
 
 /*-------------------------------- Functions --------------------------------*/
 
-
-
-
-
-
-
 function getPlayers (isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) {
   const setUpPlayers = (player1,player2) => {
     player1.setOpponent(player2)
@@ -42,11 +36,9 @@ function getPlayers (isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) {
     return [player1,player2]
   }
 
-
   let player1  = new PlayerImport.Player(player1Value,isAIPlayer1,depth1)
   let player2 = new PlayerImport.Player(player2Value, isAIPlayer2,depth2)
   let players = setUpPlayers(player1,player2)
-
 
   return players
 }
@@ -87,7 +79,6 @@ function initGame() {
   }
 }
 
-
 function startGame() {
   let title = document.createElement('p')
   title.id = 'title'
@@ -95,11 +86,7 @@ function startGame() {
   bodyElement.appendChild(title)
 }
 
-
 function displayMenu () {
-  
-  
-  
   view.turnOff()
   let menu = document.createElement('div')
   menu.classList.add('menu')
@@ -118,8 +105,6 @@ function displayMenu () {
   chooseP1.textContent = 'Player One:'
   chooseP1.classList.add('choose-player-1')
   menu.appendChild(chooseP1)
-
-
 
   let chooseP2 = document.createElement('p')
   chooseP2.textContent = 'Player Two:'
@@ -153,9 +138,6 @@ function displayMenu () {
   aiHard1.id = 'aiHardButton1'
   aiHard1.textContent = 'AI-Hard'
   menu.appendChild(aiHard1)
-
-
-
 
   let humanButton2 = document.createElement('button')
   humanButton2.classList.add('difficulty-level')
