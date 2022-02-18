@@ -24,7 +24,6 @@ class Controller {
     this.#beta = Infinity
   }
 
-
   setModel (model) {
     this.#model = model
   }
@@ -40,7 +39,6 @@ class Controller {
     this.#activePlayer = player
   }
 
-
   getLocationsOfPossibleMovesFrom (board) {
  
     let possibleMovesBoard = [
@@ -53,7 +51,6 @@ class Controller {
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
   ]
-
 
   for (let i = 0; i < NUM_ROWS; i++) {
     for (let j = 0; j < NUM_COLS; j++) {
@@ -72,7 +69,6 @@ class Controller {
 locationToID(location) {
     return (location[0]*NUM_COLS) + location[1]
   }
-
 
 aiMove () {
 
@@ -111,7 +107,6 @@ switchPlayer() {
       } 
     },10)
 }
-
 
  moveChosen (chosenMove) {
     let boardCopy = getDeepCopy(chosenMove.board)
