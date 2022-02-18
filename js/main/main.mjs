@@ -37,7 +37,7 @@ let tiles
 
 
 
-function getPlayers (isAIPlayer1, isAIPlayer2) {
+function getPlayers (isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) {
   const setUpPlayers = (player1,player2) => {
     player1.setOpponent(player2)
     player2.setOpponent(player1)
@@ -45,10 +45,10 @@ function getPlayers (isAIPlayer1, isAIPlayer2) {
   }
 
 
-  let player1  = new PlayerImport.Player(player1Value,isAIPlayer1)
-  let player2 = new PlayerImport.Player(player2Value, isAIPlayer2)
+  let player1  = new PlayerImport.Player(player1Value,isAIPlayer1,depth1)
+  let player2 = new PlayerImport.Player(player2Value, isAIPlayer2,depth2)
   let players = setUpPlayers(player1,player2)
-  console.log(players)
+ // console.log(players)
 
   return players
 }
@@ -76,8 +76,10 @@ function initGame() {
   
   boardDisplay.addEventListener('click', (e)=>view.acceptBoardClick(e))
   players = getPlayers(false,true)
-  activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
-  console.log(activePlayer)
+  //activePlayer = new PlayerImport.ActivePlayer(players[0],players[1])
+  activePlayer = new PlayerImport.ActivePlayer()
+  activePlayer.setPlayers(players[0],players[1])
+ // console.log(activePlayer)
   controller.setActivePlayer(activePlayer)
   view.setBoardDiv(boardDisplay)
 
@@ -281,7 +283,19 @@ function displayMenu () {
   startButton.addEventListener('click',(e) => {
     menu.remove()
     view.turnOn()
+
+    let isPlayer1AI = (player1.id === 'humanButton1') ? false : true
+    let isPlayer2AI = (player2.id === 'humanButton2') ? false : true
+    let depth1 = (player1.id === 'aiEasyButton1') ? 1
+                  : (player1.id === 'aiMediumButton1') ? 3
+                  : 5
+    let depth2 = (player2.id === 'aiEasyButton2') ? 1
+                  : (player2.id === 'aiMediumButton2') ? 3
+                  : 5
+    //(isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) 
     //console.log(player1, player2)
+    players = getPlayers(isPlayer1AI,isPlayer2AI,depth1,depth2)
+    activePlayer.setPlayers(players[0],players[1])
   })
 
 }

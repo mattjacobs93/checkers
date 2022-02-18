@@ -89,7 +89,7 @@ aiMove () {
  // console.log('got board copy from model', boardCopy)
   let moveObj = new Move(null,boardCopy)
 
-  let maxDepth = 5
+  let maxDepth = this.#activePlayer.getDepth()
   let chosenMoveObj = minmax(moveObj,0,maxDepth,this.#activePlayer.getActivePlayer(), -1*Infinity, Infinity)
   //console.log('my chosen move obj',chosenMoveObj)
  

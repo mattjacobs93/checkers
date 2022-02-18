@@ -14,9 +14,12 @@ export {Player, ActivePlayer}
 class ActivePlayer {
   #players
   #activePlayerNum
-  constructor(player1,player2) {
-    this.#players = [player1, player2]
+  constructor() {
     this.#activePlayerNum = 0
+  }
+
+  setPlayers(player1,player2) {
+    this.#players = [player1, player2]
   }
 
   tileBelongsToPlayer(locationValue) {
@@ -34,6 +37,10 @@ class ActivePlayer {
   isAI () {
     return this.#players[this.#activePlayerNum].isPlayerAI()
   }
+
+  getDepth() {
+    return this.#players[this.#activePlayerNum].getDepth()
+  }
 }
 
 
@@ -42,10 +49,16 @@ class Player {
   #checkerTile
   #kingTile
   #isAI
-  constructor (playerNum,isAI) {
+  #depth
+  constructor (playerNum,isAI,depth=0) {
     this.#checkerTile = playerNum
     this.#kingTile = playerNum * 2
     this.#isAI = isAI
+    this.#depth = depth
+  }
+
+  getDepth () {
+    return this.#depth
   }
 
   setOpponent (opponent) {

@@ -1,8 +1,8 @@
 
 /*-------------------------------- Imports --------------------------------*/
-import {getValidMoves} from "../controller/validator.mjs"
+//import {getValidMoves} from "../controller/validator.mjs"
 import {Model,NUM_ROWS,NUM_COLS,NUM_TILES} from "../model/model.mjs"
-import {CheckersPiece} from "../view/checkersPiece.mjs"
+//import {CheckersPiece} from "../view/checkersPiece.mjs"
 import { CheckersPieceHolder } from "./checkersPieceHolder.mjs"
 /*-------------------------------- Export(s) --------------------------------*/
 export {View}
@@ -23,6 +23,8 @@ let darkColorTile = '#a0522d'
 // let darkPiece = 'O'
 // let darkPieceKing = 'KO'
 // let emptyPiece = ''
+
+
 let lightPiece = ''
 let lightPieceKing = ''
 let darkPiece = ''
