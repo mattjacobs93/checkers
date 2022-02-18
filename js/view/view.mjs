@@ -176,10 +176,7 @@ renderPossibleFromTiles (board) {
         if (possibleMovesBoard[row][col] === 1) {
           this.tiles[(row * NUM_COLS) + col].classList.add('possibleMoveFrom')
         }
-
-
     }
-
   }
 }
 
