@@ -98,10 +98,6 @@ function initGame() {
   }
 }
 
-function main() {
-  initGame()
-}
-
 
 //main()
 
@@ -305,7 +301,14 @@ function displayMenu () {
 }
 
 
-main()
-testing()
 
-displayMenu()
+function main() {
+  initGame()
+  testing()
+  displayMenu()
+}
+
+
+main()
+
+
