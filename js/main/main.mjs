@@ -105,62 +105,62 @@ function initGame() {
   let humanButton1 = document.createElement('button')
   humanButton1.classList.add('difficulty-level')
   humanButton1.classList.add('player-one')
-  humanButton1.id = 'humanButton1'
+  humanButton1.id = 'human-button-1'
   humanButton1.textContent = 'Human'
   menu.appendChild(humanButton1)
 
   let aiEasy1 = document.createElement('button')
   aiEasy1.classList.add('difficulty-level')
   aiEasy1.classList.add('player-one')
-  aiEasy1.id = 'aiEasyButton1'
+  aiEasy1.id = 'ai-easy-button-1'
   aiEasy1.textContent = 'AI-Easy'
   menu.appendChild(aiEasy1)
 
   let aiMedium1 = document.createElement('button')
   aiMedium1.classList.add('difficulty-level')
   aiMedium1.classList.add('player-one')
-  aiMedium1.id = 'aiMediumButton1'
+  aiMedium1.id = 'ai-medium-button-1'
   aiMedium1.textContent = 'AI-Medium'
   menu.appendChild(aiMedium1)
 
   let aiHard1 = document.createElement('button')
   aiHard1.classList.add('difficulty-level')
   aiHard1.classList.add('player-one')
-  aiHard1.id = 'aiHardButton1'
+  aiHard1.id = 'ai-hard-button-1'
   aiHard1.textContent = 'AI-Hard'
   menu.appendChild(aiHard1)
 
   let humanButton2 = document.createElement('button')
   humanButton2.classList.add('difficulty-level')
   humanButton2.classList.add('player-two')
-  humanButton2.id = 'humanButton2'
+  humanButton2.id = 'human-button-2'
   humanButton2.textContent = 'Human'
   menu.appendChild(humanButton2)
 
   let aiEasy2 = document.createElement('button')
   aiEasy2.classList.add('difficulty-level')
   aiEasy2.classList.add('player-two')
-  aiEasy2.id = 'aiEasyButton2'
+  aiEasy2.id = 'ai-easy-button-2'
   aiEasy2.textContent = 'AI-Easy'
   menu.appendChild(aiEasy2)
 
   let aiMedium2 = document.createElement('button')
   aiMedium2.classList.add('difficulty-level')
   aiMedium2.classList.add('player-two')
-  aiMedium2.id = 'aiMediumButton2'
+  aiMedium2.id = 'ai-medium-button-2'
   aiMedium2.textContent = 'AI-Medium'
   menu.appendChild(aiMedium2)
 
   let aiHard2 = document.createElement('button')
   aiHard2.classList.add('difficulty-level')
   aiHard2.classList.add('player-two')
-  aiHard2.id = 'aiHardButton2'
+  aiHard2.id = 'ai-hard-button-2'
   aiHard2.textContent = 'AI-Hard'
   menu.appendChild(aiHard2)
 
   let startButton = document.createElement('button')
   startButton.classList.add('startButton')
-  startButton.id = 'startButton'
+  startButton.id = 'start-button'
   startButton.textContent = 'start'
   startButton.disabled = true
   menu.appendChild(startButton) 
@@ -209,13 +209,13 @@ function initGame() {
     menu.remove()
     view.turnOn()
 
-    let isPlayer1AI = (player1 === 'humanButton1') ? false : true
-    let isPlayer2AI = (player2 === 'humanButton2') ? false : true
-    let depth1 = (player1 === 'aiEasyButton1') ? 1
-                  : (player1 === 'aiMediumButton1') ? 3
+    let isPlayer1AI = (player1 === 'human-button-1') ? false : true
+    let isPlayer2AI = (player2 === 'human-button-2') ? false : true
+    let depth1 = (player1 === 'ai-easy-button-1') ? 1
+                  : (player1 === 'ai-medium-button-1') ? 3
                   : 5
-    let depth2 = (player2 === 'aiEasyButton2') ? 1
-                  : (player2 === 'aiMediumButton2') ? 3
+    let depth2 = (player2 === 'ai-easy-button-2') ? 1
+                  : (player2 === 'ai-medium-utton-2') ? 3
                   : 5
   
     players = getPlayers(isPlayer1AI,isPlayer2AI,depth1,depth2)

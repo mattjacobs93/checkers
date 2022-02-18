@@ -48,11 +48,11 @@ body {
   border: 3px solid red;
 }
 
-.possibleMoveTo {
+.possible-move-to {
   border: 3px solid purple;
 }
 
-.possibleMoveFrom {
+.possible-move-from {
   border: 3px solid blue;
 }
 
@@ -163,41 +163,41 @@ body {
   border-radius: 7%;
 }
 
-#humanButton1 {
+#human-button-1 {
   grid-area: humanP1;
   
 }
 
-#aiEasyButton1 {
+#ai-easy-button-1 {
   grid-area: AIEasyP1; 
 }
 
-#aiMediumButton1 {
+#ai-medium-button-1 {
   grid-area: AIMediumP1;
 }
 
-#aiHardButton1 {
+#ai-hard-button-1 {
   grid-area: AIHardP1;
 }
 
-#humanButton2 {
+#human-button-2 {
   grid-area: humanP2;
   
 }
 
-#aiEasyButton2 {
+#ai-easy-button-2 {
   grid-area: AIEasyP2; 
 }
 
-#aiMediumButton2 {
+#ai-medium-button-2 {
   grid-area: AIMediumP2;
 }
 
-#aiHardButton2 {
+#ai-hard-button-2 {
   grid-area: AIHardP2;
 }
 
-#startButton {
+#start-button {
   grid-area: start;
   width: 10vh;
   justify-self: center;
