@@ -109,8 +109,7 @@ function testing() {
   title.id = 'title'
   title.textContent = 'Checkers'
   bodyElement.appendChild(title)
-  view.turnOff()
-  view.displayIntroMessage()
+
  // view.turnOn()
 //   let tilePiece = document.createElement('div')
 //   tilePiece.classList.add('checkers-piece')
@@ -139,7 +138,27 @@ function testing() {
 }
 
 
+function displayMenu () {
+  
+  
+  
+  view.turnOff()
+  //view.displayIntroMessage()
+  let menu = document.createElement('div')
+  menu.classList.add('menu')
+  menu.textContent = " "
+  bodyElement.append(menu)
+  let rectBoard = boardDisplay.getBoundingClientRect()
+  let menuWidth = parseInt(0.8 * (rectBoard.left - rectBoard.right))
+  menu.style.width = '67.5vh'
+  menu.style.height = '42vh'
+  menu.style.position = 'relative'
+  menu.style.top = '16.5vh'
+  console.log('hi',rectBoard)
+}
+
 
 main()
 testing()
 
+displayMenu()

@@ -153,3 +153,11 @@ body {
 .empty-dark {
   background-color: #a0522d;
 }
+
+.menu {
+  background-color: black;
+  grid-area: midCenter;
+  z-index: 1;
+  margin: 0 auto;
+  border-radius: 15%;
+}

@@ -292,13 +292,13 @@ turnOff () {
   this.isOn = false
   this.cleanBoard()
   this.turnHoverOff()
-  this.bodyElement.style.opacity = '0.3';
+  this.boardDiv.style.opacity = '0.3';
 }
 
 
 turnOn () {
   this.isOn = true
-  this.bodyElement.style.opacity = '1.0';
+  this.boardDiv.style.opacity = '1.0';
   this.turnHoverOn()
   this.renderPossibleFromTiles(this.#controller.getBoardCopy())
 }
