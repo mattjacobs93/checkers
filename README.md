@@ -3,7 +3,7 @@
 
 
 ## Deployment Link: 
-### (checkersbymattjacobs.surge.sh)
+### www.checkersbymattjacobs.surge.sh
 
 ## Screenshot
 
