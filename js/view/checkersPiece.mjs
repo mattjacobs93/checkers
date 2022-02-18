@@ -2,10 +2,10 @@
 export {CheckersPiece}
 
 
-
 class CheckersPiece {
   pieceDiv
   currTile
+
   constructor(pieceDiv) {
     this.pieceDiv = pieceDiv
   }
@@ -13,7 +13,5 @@ class CheckersPiece {
   setCurrTile(currTile) {
     this.currTile = currTile
   }
-
-
 
 }
