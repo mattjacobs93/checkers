@@ -1,9 +1,11 @@
-# Checkers: Play checkers locally against a friend or an AI opponent.
-### Description: I chose checkers because I am a fan of the game and thought that it would provide a great opportunity to further develop my software engineering skills by building both the game/game logic as well as AI players. Start the game by choosing from one of four possible players (human, AI-Easy, AI-Medium, and AI-hard) for each player (red and black), then press "start" to start the game.
+# Checkers: 
+### Description: Play checkers locally against a friend or an AI opponent.
+### Background: I chose checkers because I am a fan of the game and thought that it would provide a great opportunity to further develop my software engineering skills by building both the game/game logic as well as AI players. 
 
 
 
 # Getting Started:
+### Start the game by choosing from one of four possible players (human, AI-Easy, AI-Medium, and AI-hard) for each player (red and black), then press "start" to start the game.
 ### Deployment Link: www.checkersbymattjacobs.surge.sh
 
 # Screenshots:
