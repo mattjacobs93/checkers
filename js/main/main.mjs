@@ -284,18 +284,22 @@ function displayMenu () {
     menu.remove()
     view.turnOn()
 
-    let isPlayer1AI = (player1.id === 'humanButton1') ? false : true
-    let isPlayer2AI = (player2.id === 'humanButton2') ? false : true
-    let depth1 = (player1.id === 'aiEasyButton1') ? 1
-                  : (player1.id === 'aiMediumButton1') ? 3
+    let isPlayer1AI = (player1 === 'humanButton1') ? false : true
+    let isPlayer2AI = (player2 === 'humanButton2') ? false : true
+    let depth1 = (player1 === 'aiEasyButton1') ? 1
+                  : (player1 === 'aiMediumButton1') ? 3
                   : 5
-    let depth2 = (player2.id === 'aiEasyButton2') ? 1
-                  : (player2.id === 'aiMediumButton2') ? 3
+    let depth2 = (player2 === 'aiEasyButton2') ? 1
+                  : (player2 === 'aiMediumButton2') ? 3
                   : 5
     //(isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) 
     //console.log(player1, player2)
     players = getPlayers(isPlayer1AI,isPlayer2AI,depth1,depth2)
+    console.log(player1.id,player2.id)
+    console.log(isPlayer1AI,isPlayer2AI,depth1,depth2)
     activePlayer.setPlayers(players[0],players[1])
+
+    if (isPlayer1AI) setTimeout(controller.aiMove(),10)
   })
 
 }
