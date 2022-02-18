@@ -167,10 +167,8 @@ processClick(id,location) {
   
 
       } catch {}
-
-
+      
     }
-
   else {
     this.#view.renderActiveTile(null)
     this.#view.renderPossibleFromTiles(board)
