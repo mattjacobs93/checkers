@@ -1,7 +1,6 @@
 
 /*-------------------------------- Imports --------------------------------*/
 import {Model,NUM_ROWS,NUM_COLS,NUM_TILES} from "../model/model.mjs"
-import { CheckersPieceHolder } from "./checkersPieceHolder.mjs"
 /*-------------------------------- Export(s) --------------------------------*/
 export {View}
 
@@ -66,10 +65,6 @@ class View {
   
   setBoardDiv(boardDiv) {
     this.boardDiv = boardDiv
-  }
-
-  setCheckersPieceHolder() {
-    this.checkersPieceHolder = new CheckersPieceHolder(this.bodyElement)
   }
 
 renderMove(moveObject) {

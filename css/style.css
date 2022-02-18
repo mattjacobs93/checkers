@@ -3,7 +3,6 @@
 
 html {
   box-sizing: border-box;
-  /* opacity: 30%; */
 }
 
 *,*::before,*::after {
@@ -41,18 +40,6 @@ body {
   display: grid; 
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  /* grid-template-areas: 
-  
-  "56 57 58 59 60 61 62 63"
-  "48 49 50 51 52 53 54 55"
-  "40 41 42 43 44 45 46 47"
-  "32 33 34 35 36 37 38 39"
-  "24 25 26 27 28 29 30 31"  
-  "16 17 18 19 20 21 22 23"
-  "8 9 10 11 12 13 14 15"
-  "0 1 2 3 4 5 6 7"
-  ; */
-
   height: 75vh;
   width: 75vh;
 }
@@ -98,34 +85,6 @@ body {
   left: 45.4%;
   
 }
-
-/* .red {
-  background-color: red;
-  border: dashed 0.5rem darkred;
-  color: white;
-}
-
-.black {
-  background-color: rgb(40,40,40);
-  border: dashed 0.5rem black;
-  color: white;
-}
-
-.non-king {
-  font-size: 20px;
-}
-
-.king {
-
-} */
-
-
-/* p {
-  display: inline;
-  height: 100%;
-  width: 100%;
-  font-size: 35px;
-} */
 
 .red-checker-non-king {
   background-image: url('../assets/pics/red-checker-non-king.png');
@@ -176,7 +135,6 @@ body {
 .menu-sign {
   color: white;
   grid-area: menu;
-  /* font-size: 2rem; */
   text-decoration: underline white;
   white-space: nowrap;
 }
@@ -199,7 +157,6 @@ body {
 
 
 .difficulty-level {
-  /* white-space: nowrap; */
   font-size: .5rem;
   margin: 0 .05vw;
   width: 11vh;
