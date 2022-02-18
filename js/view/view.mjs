@@ -150,12 +150,13 @@ renderMove(moveObject) {
 // }
  
 acceptBoardClick (evt) {
-  let id = parseInt(evt.target.id)
-  let row = Math.floor(id / NUM_ROWS)
-  let col = id - (row*NUM_COLS)
-  let location = [row,col]
-  this.#controller.processClick(id, location)
-
+  if (this.isOn) {
+    let id = parseInt(evt.target.id)
+    let row = Math.floor(id / NUM_ROWS)
+    let col = id - (row*NUM_COLS)
+    let location = [row,col]
+    this.#controller.processClick(id, location)
+  }
   
   
 
