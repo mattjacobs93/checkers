@@ -165,6 +165,29 @@ acceptBoardClick (evt) {
   //console.log(id, row, col)
 }
 
+renderGameOver(outcome) {
+  this.turnOff()
+  console.log('1')
+  let menu = document.createElement('div')
+  console.log('2')
+  menu.classList.add('game-over-display')
+  console.log('3')
+  let newParagraph = document.createElement('p')
+  console.log('4')
+  newParagraph.textContent = `Player ${(outcome === 1) ? 1 : 2} is the winner!!!`
+  console.log('5')
+  this.bodyElement.appendChild(menu)
+  console.log('6')
+  menu.appendChild(newParagraph)
+  console.log('7')
+  //let rectBoard = boardDisplay.getBoundingClientRect()
+  //let menuWidth = parseInt(0.8 * (rectBoard.left - rectBoard.right))
+  menu.style.width = '67.5vh'
+  menu.style.height = '42vh'
+  menu.style.position = 'relative'
+  menu.style.top = '16.5vh'
+}
+
 renderValidMovesToBoard (validMoves) {
   function addMoveToBoard(move,tiles) {
     let row = move[0]

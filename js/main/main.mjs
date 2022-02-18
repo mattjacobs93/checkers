@@ -4,7 +4,7 @@
 import * as viewImport from "../view/view.mjs";
 import * as PlayerImport from "../model/player.mjs"
 import * as ModelImport from '../model/model.mjs'
-import * as validatorImport from "../controller/validator.mjs"
+//import * as validatorImport from "../controller/validator.mjs"
 import * as controllerImport from "../controller/controller.mjs"
 // import * as checkersPieceImport from "../view/checkersPiece.mjs"
 
@@ -102,7 +102,7 @@ function initGame() {
 //main()
 
 
-function testing() {
+function startGame() {
   let title = document.createElement('p')
   title.id = 'title'
   title.textContent = 'Checkers'
@@ -147,12 +147,12 @@ function displayMenu () {
   menu.textContent = " "
   bodyElement.append(menu)
   let rectBoard = boardDisplay.getBoundingClientRect()
-  let menuWidth = parseInt(0.8 * (rectBoard.left - rectBoard.right))
+  //let menuWidth = parseInt(0.8 * (rectBoard.left - rectBoard.right))
   menu.style.width = '67.5vh'
   menu.style.height = '42vh'
   menu.style.position = 'relative'
   menu.style.top = '16.5vh'
-  console.log('hi',rectBoard)
+  //console.log('hi',rectBoard)
   let menuSign = document.createElement('p')
   menuSign.textContent = 'Starting Menu'
   menuSign.classList.add('menu-sign')
@@ -291,8 +291,8 @@ function displayMenu () {
     //(isAIPlayer1, isAIPlayer2,depth1=0,depth2=0) 
     //console.log(player1, player2)
     players = getPlayers(isPlayer1AI,isPlayer2AI,depth1,depth2)
-    console.log(player1.id,player2.id)
-    console.log(isPlayer1AI,isPlayer2AI,depth1,depth2)
+    //console.log(player1.id,player2.id)
+    //console.log(isPlayer1AI,isPlayer2AI,depth1,depth2)
     activePlayer.setPlayers(players[0],players[1])
 
     if (isPlayer1AI) setTimeout(controller.aiMove(),10)
@@ -304,7 +304,7 @@ function displayMenu () {
 
 function main() {
   initGame()
-  testing()
+  startGame()
   displayMenu()
 }
 

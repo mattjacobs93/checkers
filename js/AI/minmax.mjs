@@ -1,9 +1,9 @@
 import { getValidMoves } from "../controller/validator.mjs"
 import * as modelImport from "../model/model.mjs"
-import { MoveSequence } from "../controller/moveSequence.mjs"
+//import { MoveSequence } from "../controller/moveSequence.mjs"
 import { gameOver } from "../controller/gameOver.mjs"
 import { evalBoard } from "../controller/evalBoard.mjs"
-import { getDeepCopy } from "../controller/getDeepCopy.mjs"
+//import { getDeepCopy } from "../controller/getDeepCopy.mjs"
 
 export {minmax}
 

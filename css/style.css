@@ -249,3 +249,15 @@ body {
 .active-button {
   border: 3px solid red;
 }
+
+.game-over-display {
+  background-color: black;
+  color: white;
+  grid-area: midCenter;
+  z-index: 1;
+  margin: 0 auto;
+  border-radius: 15%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}

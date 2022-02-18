@@ -1,8 +1,12 @@
-import {model} from "../main/main.mjs"
+//import {model} from "../main/main.mjs"
 import { NUM_COLS, NUM_ROWS } from "../model/model.mjs"
 import {getValidMoves,Move} from "./validator.mjs"
 import {minmax} from "../AI/minmax.mjs"
+import { gameOver } from "./gameOver.mjs"
+import { getDeepCopy } from "./getDeepCopy.mjs"
+
 export {Controller}
+
 
 //console.log(model)
 
@@ -96,7 +100,7 @@ aiMove () {
  
  
  ///// this.moveChosen(chosenMoveObj)
- console.log(chosenMoveObj)
+ //console.log(chosenMoveObj)
  let from = chosenMoveObj.movesArray[0]
  let fromID = this.locationToID(from)
  let to = chosenMoveObj.movesArray[chosenMoveObj.movesArray.length - 1]
@@ -131,10 +135,16 @@ switchPlayer() {
 
 
 moveChosen (chosenMove) {
+  let boardCopy = getDeepCopy(chosenMove.board)
   this.#model.setBoard(chosenMove.board)
   this.#view.renderMove(chosenMove)
-  this.#validMoves = []
-  this.switchPlayer()
+  let outcome = gameOver(boardCopy)
+  if (outcome !== 0) {
+    this.#view.renderGameOver(outcome)
+  } else {
+    this.#validMoves = []
+    this.switchPlayer()
+  }
 }
 
 processClick(id,location) {
