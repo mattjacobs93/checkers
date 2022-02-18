@@ -2,12 +2,12 @@
 ## Play checkers locally against a friend or an AI oppoenent
 
 
-# Deployment Link: 
-## https://mattjacobs93.github.io/checkers/
+## Deployment Link: 
+### https://mattjacobs93.github.io/checkers/
 
-# Screenshot
+## Screenshot
 
-# Technologies used: HTML, CSS, Javascript
+## Technologies used: HTML, CSS, Javascript
 
-# Next steps:
-## light and dark mode
+## Next steps:
+### light and dark mode
