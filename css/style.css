@@ -143,7 +143,7 @@ body {
   grid-area: choosePlayer1;
   color: white;
   white-space: nowrap;
-  font-size: 0.7rem;
+  font-size: 1rem;
   align-self: center;
 }
 
@@ -151,13 +151,13 @@ body {
   grid-area: choosePlayer2;
   color: white;
   white-space: nowrap;
-  font-size: 0.7rem;
+  font-size: 1rem;
   align-self: center;
 }
 
 
 .difficulty-level {
-  font-size: .5rem;
+  font-size: 1rem;
   margin: 0 .05vw;
   width: 11vh;
   border-radius: 7%;
