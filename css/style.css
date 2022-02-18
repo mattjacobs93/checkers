@@ -137,6 +137,7 @@ body {
   grid-area: menu;
   text-decoration: underline white;
   white-space: nowrap;
+  font-size: 1rem;
 }
 
 .choose-player-1 {
@@ -201,6 +202,7 @@ body {
   grid-area: start;
   width: 10vh;
   justify-self: center;
+  font-size: 1rem;
 }
 
 .active-button {
