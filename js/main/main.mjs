@@ -74,19 +74,10 @@ function initGame() {
   view.addTiles(tiles)
   view.renderBoard(boardAtBeginning)
   view.renderPossibleFromTiles(boardAtBeginning)
-  if (activePlayer.isAI()) {
-    controller.aiMove()
-  }
-}
-
-function startGame() {
   let title = document.createElement('p')
   title.id = 'title'
   title.textContent = 'Checkers'
   bodyElement.appendChild(title)
-}
-
-function displayMenu () {
   view.turnOff()
   let menu = document.createElement('div')
   menu.classList.add('menu')
@@ -231,20 +222,11 @@ function displayMenu () {
 
     activePlayer.setPlayers(players[0],players[1])
 
-    if (isPlayer1AI) setTimeout(controller.aiMove(),10)
+    if (isPlayer1AI) setTimeout(function(){controller.aiMove()},10)
   })
-
 }
 
+initGame()
 
-
-function main() {
-  initGame()
-  startGame()
-  displayMenu()
-}
-
-
-main()
 
 
