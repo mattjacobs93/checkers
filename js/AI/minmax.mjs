@@ -24,8 +24,6 @@ const belongsToPlayer = (player,currValue) => {
 
 function minmax (moveObject,currDepth,maxDepth,player,alpha,beta) {
 
-
-
   function makeChildren(moveObj,player) {
     let children = []
     let board = deepCopyBoard(moveObj.board)
@@ -41,14 +39,11 @@ function minmax (moveObject,currDepth,maxDepth,player,alpha,beta) {
     return children
   }
 
-      let gameResult = gameOver(moveObject.board)
+  let gameResult = gameOver(moveObject.board)
       
-      if (currDepth === maxDepth || gameResult !== 0) {
-        return evalBoard(moveObject.board, gameResult)
-      }
-
-
-
+  if (currDepth === maxDepth || gameResult !== 0) {
+      return evalBoard(moveObject.board, gameResult)
+    }
 
   let children = makeChildren(moveObject,player)
   let minIdx = -1
