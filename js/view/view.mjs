@@ -66,8 +66,10 @@ class View {
   activePlayer
   boardDiv
   checkersPieceHolder
+  isOn
 
   constructor () {
+    this.isOn = true
 
   }
 
@@ -275,10 +277,31 @@ renderActiveTile(id) {
   if (id) this.tiles[id].classList.add('activeTile')
 }
 
-toggleHover() {
-  
+toggleHover () {}
+
+turnHoverOn () {
+  this.boardDiv.classList.remove('hoverable')
+  this.boardDiv.classList.add('hoverable')
 }
 
+turnHoverOff () {
+    this.boardDiv.classList.remove('hoverable')
+}
+
+turnOff () {
+  this.isOn = false
+  this.cleanBoard()
+  this.turnHoverOff()
+  this.bodyElement.style.opacity = '0.3';
+}
+
+
+turnOn () {
+  this.isOn = true
+  this.bodyElement.style.opacity = '1.0';
+  this.turnHoverOn()
+  this.renderPossibleFromTiles(this.#controller.getBoardCopy())
+}
 cleanBoard() {
   this.tiles.forEach(tile => {tile.classList.remove('possibleMoveFrom'); tile.classList.remove('possbileMoveTo')})
   this.tiles.forEach(tile=>tile.classList.remove('activeTile'))

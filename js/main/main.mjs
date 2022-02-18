@@ -57,6 +57,7 @@ function getPlayers (isAIPlayer1, isAIPlayer2) {
 function initHTMLForGame () {
   let innerDiv = document.createElement('div')
   innerDiv.id = 'board'
+  innerDiv.classList.add('hoverable')
   bodyElement.innerHTML = ''
   bodyElement.appendChild(innerDiv)
   boardDisplay = document.getElementById('board')
@@ -108,6 +109,9 @@ function testing() {
   title.id = 'title'
   title.textContent = 'Checkers'
   bodyElement.appendChild(title)
+  view.turnOff()
+  view.displayIntroMessage()
+ // view.turnOn()
 //   let tilePiece = document.createElement('div')
 //   tilePiece.classList.add('checkers-piece')
 //   tilePiece.classList.add('red')
@@ -135,5 +139,7 @@ function testing() {
 }
 
 
+
 main()
 testing()
+
